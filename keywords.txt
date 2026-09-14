@@ -1,0 +1,24 @@
+#######################################
+# Syntax Coloring Map For TinyDNSClient
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+DNSResolver	KEYWORD1
+DNSResult	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+resolve	KEYWORD2
+resolveV6	KEYWORD2
+setTimeout	KEYWORD2
+lastResult	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
