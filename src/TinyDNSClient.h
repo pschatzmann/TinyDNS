@@ -136,6 +136,41 @@ class DNSResolver {
   }
 
   /**
+   * @brief Resolve the hostname embedded in a URL (or a bare hostname)
+   * in place, replacing it with its resolved IPv4 address.
+   *
+   * Recognizes an optional "scheme://" prefix and an optional
+   * ":port" or "/path" suffix; only the hostname portion between them
+   * is replaced, everything else is left untouched. For example
+   * "http://example.com:8080/foo" becomes
+   * "http://93.184.216.34:8080/foo".
+   * @param io String holding a hostname or URL; rewritten in place on
+   * success, left unmodified on failure.
+   * @return true if the hostname resolved successfully and @p io was
+   * updated, false otherwise (see lastResult() for the reason).
+   */
+  bool resolve(String &io) {
+    size_t hostStart = 0;
+    int schemeEnd = io.indexOf("://");
+    if (schemeEnd >= 0) hostStart = (size_t)schemeEnd + 3;
+
+    size_t hostEnd = io.length();
+    int slashIdx = io.indexOf('/', hostStart);
+    int colonIdx = io.indexOf(':', hostStart);
+    if (slashIdx >= 0 && (size_t)slashIdx < hostEnd) hostEnd = (size_t)slashIdx;
+    if (colonIdx >= 0 && (size_t)colonIdx < hostEnd) hostEnd = (size_t)colonIdx;
+
+    if (hostEnd <= hostStart) return fail(DNSResult::NotConfigured);
+
+    String hostname = io.substring(hostStart, hostEnd);
+    IPAddress ip;
+    if (!resolve(hostname.c_str(), ip)) return false;
+
+    io = io.substring(0, hostStart) + ip.toString() + io.substring(hostEnd);
+    return true;
+  }
+
+  /**
    * @brief Get the outcome of the most recent resolve()/resolveV6() call.
    * @return The DNSResult describing success or the reason for failure.
    */

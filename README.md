@@ -34,6 +34,17 @@ uint8_t addr6[16];
 if (dns.resolveV6("example.com", addr6)) { ... }
 ```
 
+To resolve a hostname embedded in a URL in place, use the `String&`
+overload — it rewrites just the hostname portion and leaves any
+scheme/port/path untouched:
+
+```cpp
+String url = "http://example.com:8080/status";
+if (dns.resolve(url)) {
+  Serial.println(url);  // http://93.184.216.34:8080/status
+}
+```
+
 ## Configuration
 
 - `DNSResolver::setTimeout(ms)` — per-query timeout (default 5000 ms).
