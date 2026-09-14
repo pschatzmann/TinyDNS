@@ -1,5 +1,8 @@
 # TinyDNSClient
 
+[![Arduino Library](https://img.shields.io/badge/Arduino-Library-blue.svg)](https://www.arduino.cc/reference/en/libraries/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 Header-only DNS resolver for Arduino that talks DNS over a generic
 [`Client`](https://www.arduino.cc/reference/en/libraries/client/) instead of
 `UDP`. Because it only depends on `Client`, it works with:
