@@ -10,9 +10,9 @@ TLS (port 853).
 
 It provides:
 
-- **`TinyDNSClient`**: resolves A and AAAA records.
-- **`TinyDNSServer`**: a caching DNS server with a static host table and an
-  LRU cache. Cache misses are forwarded to an upstream `TinyDNSClient`.
+- **[`TinyDNSClient`](https://pschatzmann.github.io/TinyDNS/class_tiny_d_n_s_client.html)**: resolves A and AAAA records.
+- **[`TinyDNSServer`](https://pschatzmann.github.io/TinyDNS/class_tiny_d_n_s_server.html)**: a caching DNS server with a static host table and an
+  LRU cache. Cache misses are forwarded to an upstream [`TinyDNSClient`](https://pschatzmann.github.io/TinyDNS/class_tiny_d_n_s_client.html).
 
 ## Installation
 
@@ -53,7 +53,7 @@ void setup() {
 
 - [Wiki](https://github.com/pschatzmann/TinyDNSClient/wiki): usage guides for
   the client, server, configuration (including PSRAM), and testing.
-- [Doxygen API reference](https://pschatzmann.github.io/TinyDNSClient/).
+- [Doxygen API reference](https://pschatzmann.github.io/TinyDNS/annotated.html).
 - [`examples/`](examples/): `DNSClient` and `DNSServer` sketches.
 
 ## License
