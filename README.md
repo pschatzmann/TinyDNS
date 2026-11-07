@@ -32,23 +32,6 @@ git clone https://github.com/pschatzmann/TinyDNS.git
 lib_deps = https://github.com/pschatzmann/TinyDNS.git
 ```
 
-## Quick start
-
-```cpp
-#include <WiFi.h>
-#include <TinyDNS.h>
-
-WiFiClient net;
-TinyDNSClient dns(net, IPAddress(1, 1, 1, 1));  // Cloudflare, TCP port 53
-
-void setup() {
-  IPAddress ip;
-  if (dns.resolve("example.com", ip)) {
-    Serial.println(ip);
-  }
-}
-```
-
 ## Documentation
 
 - [Wiki](https://github.com/pschatzmann/TinyDNS/wiki): usage guides for
