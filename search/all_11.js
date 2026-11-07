@@ -9,6 +9,5 @@ var searchData=
   ['setmaxttl_6',['setMaxTtl',['../class_tiny_d_n_s_server.html#ac7a034da216b7cde498b5d9a419b5335',1,'TinyDNSServer']]],
   ['settimeout_7',['settimeout',['../class_tiny_d_n_s_client.html#a6608de1ae26129ecdf56927411878e6d',1,'TinyDNSClient::setTimeout()'],['../class_tiny_d_n_s_server.html#a6608de1ae26129ecdf56927411878e6d',1,'TinyDNSServer::setTimeout()']]],
   ['size_8',['size',['../class_tiny_d_n_s_l_r_u_cache.html#a259cb5a711406a8c3e5d937eb9350cca',1,'TinyDNSLRUCache']]],
-  ['skipname_9',['skipName',['../class_tiny_d_n_s_client.html#a6dbdea073fb151581bad5426ef6a462b',1,'TinyDNSClient']]],
-  ['start_10',['Quick start',['../index.html#autotoc_md4',1,'']]]
+  ['skipname_9',['skipName',['../class_tiny_d_n_s_client.html#a6dbdea073fb151581bad5426ef6a462b',1,'TinyDNSClient']]]
 ];

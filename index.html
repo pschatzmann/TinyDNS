@@ -90,29 +90,13 @@ Arduino IDE</h2>
 PlatformIO</h2>
 <div class="fragment"><div class="line">lib_deps = https://github.com/pschatzmann/TinyDNS.git</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
-Quick start</h1>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;WiFi.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_tiny_d_n_s_8h.html">TinyDNS.h</a>&gt;</span></div>
-<div class="line"> </div>
-<div class="line">WiFiClient net;</div>
-<div class="line"><a class="code hl_class" href="class_tiny_d_n_s_client.html">TinyDNSClient</a> dns(net, IPAddress(1, 1, 1, 1));  <span class="comment">// Cloudflare, TCP port 53</span></div>
-<div class="line"> </div>
-<div class="line"><span class="keywordtype">void</span> setup() {</div>
-<div class="line">  IPAddress ip;</div>
-<div class="line">  <span class="keywordflow">if</span> (dns.resolve(<span class="stringliteral">&quot;example.com&quot;</span>, ip)) {</div>
-<div class="line">    Serial.println(ip);</div>
-<div class="line">  }</div>
-<div class="line">}</div>
-<div class="ttc" id="a_tiny_d_n_s_8h_html"><div class="ttname"><a href="_tiny_d_n_s_8h.html">TinyDNS.h</a></div><div class="ttdoc">Umbrella header for the TinyDNS library.</div></div>
-<div class="ttc" id="aclass_tiny_d_n_s_client_html"><div class="ttname"><a href="class_tiny_d_n_s_client.html">TinyDNSClient</a></div><div class="ttdoc">Header-only DNS resolver that queries over a generic Arduino Client rather than UDP.</div><div class="ttdef"><b>Definition</b> TinyDNSClient.h:64</div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
 Documentation</h1>
 <ul>
 <li><a href="https://github.com/pschatzmann/TinyDNS/wiki">Wiki</a>: usage guides for the client, server, configuration (including PSRAM), and testing.</li>
 <li><a href="https://pschatzmann.github.io/TinyDNS/annotated.html">Doxygen API reference</a>.</li>
 <li><a href="examples/"><code>examples/</code></a>: <code>DNSClient</code> and <code>DNSServer</code> sketches.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h1><a class="anchor" id="autotoc_md5"></a>
 License</h1>
 <p>Released under the MIT License. See [LICENSE](LICENSE). </p>
 </div></div><!-- PageDoc -->
