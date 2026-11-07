@@ -23,13 +23,13 @@ Add .ZIP Library…*, or clone it into your Arduino libraries folder:
 
 ```bash
 cd ~/Documents/Arduino/libraries
-git clone https://github.com/pschatzmann/TinyDNSClient.git
+git clone https://github.com/pschatzmann/TinyDNS.git
 ```
 
 ### PlatformIO
 
 ```ini
-lib_deps = https://github.com/pschatzmann/TinyDNSClient.git
+lib_deps = https://github.com/pschatzmann/TinyDNS.git
 ```
 
 ## Quick start
@@ -51,7 +51,7 @@ void setup() {
 
 ## Documentation
 
-- [Wiki](https://github.com/pschatzmann/TinyDNSClient/wiki): usage guides for
+- [Wiki](https://github.com/pschatzmann/TinyDNS/wiki): usage guides for
   the client, server, configuration (including PSRAM), and testing.
 - [Doxygen API reference](https://pschatzmann.github.io/TinyDNS/annotated.html).
 - [`examples/`](examples/): `DNSClient` and `DNSServer` sketches.
