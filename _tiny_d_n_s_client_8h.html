@@ -128,6 +128,18 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:a29c286ae5c20bdbc7bc8bebd6df9df7f" id="r_a29c286ae5c20bdbc7bc8bebd6df9df7f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tiny_d_n_s_client_8h.html#a29c286ae5c20bdbc7bc8bebd6df9df7f">DNS_CLOUDFLARE_PRIMARY</a>&#160;&#160;&#160;IPAddress(1, 1, 1, 1)</td></tr>
+<tr class="separator:a29c286ae5c20bdbc7bc8bebd6df9df7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5856adfe67294267ae796b41754ab83" id="r_ab5856adfe67294267ae796b41754ab83"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tiny_d_n_s_client_8h.html#ab5856adfe67294267ae796b41754ab83">DNS_CLOUDFLARE_SECONDARY</a>&#160;&#160;&#160;IPAddress(1, 0, 0, 1)</td></tr>
+<tr class="separator:ab5856adfe67294267ae796b41754ab83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abec5c9a003531ce62aaa002d1c78e29e" id="r_abec5c9a003531ce62aaa002d1c78e29e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tiny_d_n_s_client_8h.html#abec5c9a003531ce62aaa002d1c78e29e">DNS_GOOGLE_PRIMARY</a>&#160;&#160;&#160;IPAddress(8, 8, 8, 8)</td></tr>
+<tr class="separator:abec5c9a003531ce62aaa002d1c78e29e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63cb06379b67d410830e1163e8d5adda" id="r_a63cb06379b67d410830e1163e8d5adda"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tiny_d_n_s_client_8h.html#a63cb06379b67d410830e1163e8d5adda">DNS_GOOGLE_SECONDARY</a>&#160;&#160;&#160;IPAddress(8, 8, 4, 4)</td></tr>
+<tr class="separator:a63cb06379b67d410830e1163e8d5adda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c9bf020f322adbcf6d26ea374901a5f" id="r_a7c9bf020f322adbcf6d26ea374901a5f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tiny_d_n_s_client_8h.html#a7c9bf020f322adbcf6d26ea374901a5f">DNS_OPENDNS_PRIMARY</a>&#160;&#160;&#160;IPAddress(208, 67, 222, 222)</td></tr>
+<tr class="separator:a7c9bf020f322adbcf6d26ea374901a5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a533c6924f230cfab3c0088e8335b9000" id="r_a533c6924f230cfab3c0088e8335b9000"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tiny_d_n_s_client_8h.html#a533c6924f230cfab3c0088e8335b9000">DNS_QUAD9_PRIMARY</a>&#160;&#160;&#160;IPAddress(9, 9, 9, 9)</td></tr>
+<tr class="separator:a533c6924f230cfab3c0088e8335b9000"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a130f28fcd27661048bf5ae1388261a1a" id="r_a130f28fcd27661048bf5ae1388261a1a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tiny_d_n_s_client_8h.html#a130f28fcd27661048bf5ae1388261a1a">TINY_DNS_DEFAULT_TIMEOUT_MS</a>&#160;&#160;&#160;5000</td></tr>
 <tr class="separator:a130f28fcd27661048bf5ae1388261a1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9fb758b7e873390e570741b80f96c75" id="r_ac9fb758b7e873390e570741b80f96c75"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tiny_d_n_s_client_8h.html#ac9fb758b7e873390e570741b80f96c75">TINY_DNS_MAX_PACKET_SIZE</a>&#160;&#160;&#160;512</td></tr>
@@ -163,9 +175,93 @@ Enumerations</h2></td></tr>
 <div class="line"><a class="code hl_class" href="class_tiny_d_n_s_client.html">TinyDNSClient</a> dns(net, IPAddress(1, 1, 1, 1));</div>
 <div class="line">IPAddress ip;</div>
 <div class="line"><span class="keywordflow">if</span> (dns.resolve(<span class="stringliteral">&quot;example.com&quot;</span>, ip)) { ... }</div>
-<div class="ttc" id="aclass_tiny_d_n_s_client_html"><div class="ttname"><a href="class_tiny_d_n_s_client.html">TinyDNSClient</a></div><div class="ttdoc">Header-only DNS resolver that queries over a generic Arduino Client rather than UDP.</div><div class="ttdef"><b>Definition</b> TinyDNSClient.h:64</div></div>
+<div class="ttc" id="aclass_tiny_d_n_s_client_html"><div class="ttname"><a href="class_tiny_d_n_s_client.html">TinyDNSClient</a></div><div class="ttdoc">Header-only DNS resolver that queries over a generic Arduino Client rather than UDP.</div><div class="ttdef"><b>Definition</b> TinyDNSClient.h:73</div></div>
 </div><!-- fragment --><dl class="section author"><dt>Author</dt><dd>Phil Schatzmann </dd></dl>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a29c286ae5c20bdbc7bc8bebd6df9df7f" name="a29c286ae5c20bdbc7bc8bebd6df9df7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29c286ae5c20bdbc7bc8bebd6df9df7f">&#9670;&#160;</a></span>DNS_CLOUDFLARE_PRIMARY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DNS_CLOUDFLARE_PRIMARY&#160;&#160;&#160;IPAddress(1, 1, 1, 1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab5856adfe67294267ae796b41754ab83" name="ab5856adfe67294267ae796b41754ab83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5856adfe67294267ae796b41754ab83">&#9670;&#160;</a></span>DNS_CLOUDFLARE_SECONDARY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DNS_CLOUDFLARE_SECONDARY&#160;&#160;&#160;IPAddress(1, 0, 0, 1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abec5c9a003531ce62aaa002d1c78e29e" name="abec5c9a003531ce62aaa002d1c78e29e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abec5c9a003531ce62aaa002d1c78e29e">&#9670;&#160;</a></span>DNS_GOOGLE_PRIMARY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DNS_GOOGLE_PRIMARY&#160;&#160;&#160;IPAddress(8, 8, 8, 8)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a63cb06379b67d410830e1163e8d5adda" name="a63cb06379b67d410830e1163e8d5adda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63cb06379b67d410830e1163e8d5adda">&#9670;&#160;</a></span>DNS_GOOGLE_SECONDARY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DNS_GOOGLE_SECONDARY&#160;&#160;&#160;IPAddress(8, 8, 4, 4)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7c9bf020f322adbcf6d26ea374901a5f" name="a7c9bf020f322adbcf6d26ea374901a5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c9bf020f322adbcf6d26ea374901a5f">&#9670;&#160;</a></span>DNS_OPENDNS_PRIMARY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DNS_OPENDNS_PRIMARY&#160;&#160;&#160;IPAddress(208, 67, 222, 222)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a533c6924f230cfab3c0088e8335b9000" name="a533c6924f230cfab3c0088e8335b9000"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a533c6924f230cfab3c0088e8335b9000">&#9670;&#160;</a></span>DNS_QUAD9_PRIMARY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DNS_QUAD9_PRIMARY&#160;&#160;&#160;IPAddress(9, 9, 9, 9)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a130f28fcd27661048bf5ae1388261a1a" name="a130f28fcd27661048bf5ae1388261a1a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a130f28fcd27661048bf5ae1388261a1a">&#9670;&#160;</a></span>TINY_DNS_DEFAULT_TIMEOUT_MS</h2>
 

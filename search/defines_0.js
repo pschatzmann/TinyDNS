@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['tiny_5fdns_5fcache_5fsize_0',['TINY_DNS_CACHE_SIZE',['../_tiny_d_n_s_l_r_u_cache_8h.html#a80111a37c1e294f158c6f5f892319db2',1,'TinyDNSLRUCache.h']]],
-  ['tiny_5fdns_5fdefault_5ftimeout_5fms_1',['TINY_DNS_DEFAULT_TIMEOUT_MS',['../_tiny_d_n_s_client_8h.html#a130f28fcd27661048bf5ae1388261a1a',1,'TinyDNSClient.h']]],
-  ['tiny_5fdns_5fmax_5fpacket_5fsize_2',['TINY_DNS_MAX_PACKET_SIZE',['../_tiny_d_n_s_client_8h.html#ac9fb758b7e873390e570741b80f96c75',1,'TinyDNSClient.h']]],
-  ['tiny_5fdns_5fmax_5fttl_3',['TINY_DNS_MAX_TTL',['../_tiny_d_n_s_server_8h.html#aa22545164e681cad3d92cfe3b66024ec',1,'TinyDNSServer.h']]]
+  ['dns_5fcloudflare_5fprimary_0',['DNS_CLOUDFLARE_PRIMARY',['../_tiny_d_n_s_client_8h.html#a29c286ae5c20bdbc7bc8bebd6df9df7f',1,'TinyDNSClient.h']]],
+  ['dns_5fcloudflare_5fsecondary_1',['DNS_CLOUDFLARE_SECONDARY',['../_tiny_d_n_s_client_8h.html#ab5856adfe67294267ae796b41754ab83',1,'TinyDNSClient.h']]],
+  ['dns_5fgoogle_5fprimary_2',['DNS_GOOGLE_PRIMARY',['../_tiny_d_n_s_client_8h.html#abec5c9a003531ce62aaa002d1c78e29e',1,'TinyDNSClient.h']]],
+  ['dns_5fgoogle_5fsecondary_3',['DNS_GOOGLE_SECONDARY',['../_tiny_d_n_s_client_8h.html#a63cb06379b67d410830e1163e8d5adda',1,'TinyDNSClient.h']]],
+  ['dns_5fopendns_5fprimary_4',['DNS_OPENDNS_PRIMARY',['../_tiny_d_n_s_client_8h.html#a7c9bf020f322adbcf6d26ea374901a5f',1,'TinyDNSClient.h']]],
+  ['dns_5fquad9_5fprimary_5',['DNS_QUAD9_PRIMARY',['../_tiny_d_n_s_client_8h.html#a533c6924f230cfab3c0088e8335b9000',1,'TinyDNSClient.h']]]
 ];
