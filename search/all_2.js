@@ -7,8 +7,10 @@ var searchData=
   ['cachemisses_4',['cacheMisses',['../class_tiny_d_n_s_server.html#a5fbec410c495f46c0e7defd0749af35d',1,'TinyDNSServer']]],
   ['cachesize_5',['cacheSize',['../class_tiny_d_n_s_server.html#abbf4672bf7495606ac2c5454881ae8ad',1,'TinyDNSServer']]],
   ['capacity_6',['capacity',['../class_tiny_d_n_s_l_r_u_cache.html#a7223528283cd4e5872e0cc716bf9bd9d',1,'TinyDNSLRUCache']]],
-  ['clear_7',['clear',['../class_tiny_d_n_s_l_r_u_cache.html#ac8bb3912a3ce86b15842e79d0b421204',1,'TinyDNSLRUCache']]],
-  ['clearcache_8',['clearCache',['../class_tiny_d_n_s_server.html#a91b1d39c78e5682128a85ce27d4392e8',1,'TinyDNSServer']]],
-  ['client_5f_9',['client_',['../class_tiny_d_n_s_client.html#afcadb9597767b4cfd23e408ee6a9bde7',1,'TinyDNSClient']]],
-  ['connectfailed_10',['ConnectFailed',['../_tiny_d_n_s_client_8h.html#a00fc95e780e20ac9c36242ef62133315a2365dbff0791902d77af6ebc2faa0896',1,'TinyDNSClient.h']]]
+  ['captive_5f_7',['captive_',['../class_tiny_d_n_s_client.html#a5b60f67787c6ac6797c9d32813ab7010',1,'TinyDNSClient']]],
+  ['captiveip_5f_8',['captiveIp_',['../class_tiny_d_n_s_client.html#a7d5e8fae68ca7749729c6333d06681f2',1,'TinyDNSClient']]],
+  ['clear_9',['clear',['../class_tiny_d_n_s_l_r_u_cache.html#ac8bb3912a3ce86b15842e79d0b421204',1,'TinyDNSLRUCache']]],
+  ['clearcache_10',['clearCache',['../class_tiny_d_n_s_server.html#a91b1d39c78e5682128a85ce27d4392e8',1,'TinyDNSServer']]],
+  ['client_5f_11',['client_',['../class_tiny_d_n_s_client.html#afcadb9597767b4cfd23e408ee6a9bde7',1,'TinyDNSClient']]],
+  ['connectfailed_12',['ConnectFailed',['../_tiny_d_n_s_client_8h.html#a00fc95e780e20ac9c36242ef62133315a2365dbff0791902d77af6ebc2faa0896',1,'TinyDNSClient.h']]]
 ];
