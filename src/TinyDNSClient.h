@@ -114,6 +114,24 @@ class TinyDNSClient {
   void setTimeout(uint32_t timeoutMs) { timeoutMs_ = timeoutMs; }
 
   /**
+   * @brief Enable or disable captive mode.
+   *
+   * While captive mode is active, resolve() answers every hostname with
+   * @p localAddress without contacting the DNS server, so clients are
+   * redirected to the local device (e.g. a captive portal). resolveV6()
+   * reports NotFound in this mode.
+   * @param enabled true to enable captive mode, false to disable it.
+   * @param localAddress Address returned for all A queries while enabled.
+   */
+  void setCaptive(bool enabled, IPAddress localAddress = IPAddress()) {
+    captive_ = enabled;
+    captiveIp_ = localAddress;
+  }
+
+  /** @brief Whether captive mode is currently active. */
+  bool isCaptive() const { return captive_; }
+
+  /**
    * @brief Resolve a hostname to an IPv4 (A) address.
    * @param hostname Null-terminated hostname to resolve.
    * @param result Set to the resolved address on success; left
@@ -122,6 +140,13 @@ class TinyDNSClient {
    * otherwise (see lastResult() for the reason).
    */
   bool resolve(const char *hostname, IPAddress &result) {
+    if (captive_) {
+      if (!hostname) return fail(DNSResult::NotConfigured);
+      result = captiveIp_;
+      lastResult_ = DNSResult::Ok;
+      lastTtl_ = 0;
+      return true;
+    }
     uint8_t rdata[4];
     if (!resolveType(hostname, kTypeA, rdata, sizeof(rdata))) return false;
     result = IPAddress(rdata[0], rdata[1], rdata[2], rdata[3]);
@@ -141,6 +166,10 @@ class TinyDNSClient {
    * false otherwise (see lastResult() for the reason).
    */
   bool resolveV6(const char *hostname, uint8_t result[16]) {
+    if (captive_) {
+      if (!hostname) return fail(DNSResult::NotConfigured);
+      return fail(DNSResult::NotFound);  // no IPv6 address in captive mode
+    }
     return resolveType(hostname, kTypeAAAA, result, 16);
   }
 
@@ -204,6 +233,8 @@ class TinyDNSClient {
   uint8_t buffer_[TINY_DNS_MAX_PACKET_SIZE];  ///< Scratch query/response buffer.
   DNSResult lastResult_ = DNSResult::Ok;      ///< Outcome of the last query.
   uint32_t lastTtl_ = 0;                      ///< TTL of the last matched answer.
+  bool captive_ = false;                      ///< Captive mode active.
+  IPAddress captiveIp_;                       ///< Address returned in captive mode.
 
   /**
    * @brief Record a failure outcome.
