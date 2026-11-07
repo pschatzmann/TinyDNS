@@ -1,0 +1,22 @@
+<map id="src/TinyDNSServer.h" name="src/TinyDNSServer.h">
+<area shape="rect" id="Node000001" title="Caching DNS&#45;over&#45;TCP server for Arduino, backed by an LRU cache." alt="" coords="172,5,326,33"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="221,157,304,184"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="252,31,262,142,257,140,248,35"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,157,77,184"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="170,33,120,52,95,65,74,83,56,111,47,142,42,140,51,109,70,79,92,61,118,47,174,29"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="328,157,399,184"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="326,19,361,25,397,36,429,54,455,79,460,90,461,101,452,120,433,137,409,152,407,147,429,133,447,117,456,100,455,91,451,83,426,58,394,41,360,30,326,25"/>
+<area shape="rect" id="Node000005" href="$_tiny_d_n_s_client_8h.html" title="Header&#45;only DNS&#45;over&#45;TCP/TLS resolver for Arduino." alt="" coords="84,81,211,109"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="233,32,179,74,176,70,229,35"/>
+<area shape="rect" id="Node000007" href="$_tiny_d_n_s_l_r_u_cache_8h.html" title="LRU cache for DNS records with a runtime capacity, optionally placed in PSRAM." alt="" coords="286,81,441,109"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="270,31,333,72,328,73,269,36"/>
+<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="169,107,232,148,227,148,167,112"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="131,109,74,150,71,146,126,110"/>
+<area shape="poly" id="edge8_Node000005_Node000004" title=" " alt="" coords="187,107,316,151,311,153,186,112"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="101,157,197,184"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="150,107,151,142,146,140,146,111"/>
+<area shape="poly" id="edge10_Node000007_Node000002" title=" " alt="" coords="348,108,294,150,291,145,343,110"/>
+<area shape="poly" id="edge12_Node000007_Node000004" title=" " alt="" coords="366,107,366,143,362,139,362,111"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="422,157,492,184"/>
+<area shape="poly" id="edge11_Node000007_Node000008" title=" " alt="" coords="381,107,431,147,426,147,379,112"/>
+</map>

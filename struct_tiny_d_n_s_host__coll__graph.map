@@ -1,0 +1,7 @@
+<map id="TinyDNSHost" name="TinyDNSHost">
+<area shape="rect" id="Node000001" title="A static name&#45;to&#45;IPv4 mapping served authoritatively by TinyDNSServer, ahead of the cache and upstrea..." alt="" coords="59,98,166,126"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,105,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,44,107,97,102,98,70,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="129,5,213,33"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="157,45,123,99,119,96,152,47"/>
+</map>

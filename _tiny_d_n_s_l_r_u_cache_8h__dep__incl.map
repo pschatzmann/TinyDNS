@@ -1,0 +1,8 @@
+<map id="src/TinyDNSLRUCache.h" name="src/TinyDNSLRUCache.h">
+<area shape="rect" id="Node000001" title="LRU cache for DNS records with a runtime capacity, optionally placed in PSRAM." alt="" coords="5,5,184,33"/>
+<area shape="rect" id="Node000002" href="$_tiny_d_n_s_8h.html" title="Umbrella header for the TinyDNS library." alt="" coords="38,157,151,184"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,44,65,82,63,95,65,108,75,133,88,156,82,156,70,136,60,109,58,95,60,80,76,49"/>
+<area shape="rect" id="Node000003" href="$_tiny_d_n_s_server_8h.html" title="Caching DNS&#45;over&#45;TCP server for Arduino, backed by an LRU cache." alt="" coords="75,81,228,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="115,43,144,80,139,81,113,48"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="135,120,106,158,103,154,130,122"/>
+</map>

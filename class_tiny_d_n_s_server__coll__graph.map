@@ -1,0 +1,33 @@
+<map id="TinyDNSServer" name="TinyDNSServer">
+<area shape="rect" id="Node000001" title="Caching DNS server that answers queries from an LRU cache and forwards misses to an upstream TinyDNSC..." alt="" coords="652,299,772,327"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="117,5,192,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="174,43,257,148,304,199,342,232,380,251,421,267,505,290,585,302,654,311,649,310,584,308,504,295,419,272,378,256,339,236,300,203,253,151,172,48"/>
+<area shape="rect" id="Node000004" href="$class_tiny_d_n_s_client.html" title="Header&#45;only DNS resolver that queries over a generic Arduino Client rather than UDP." alt="" coords="426,161,542,188"/>
+<area shape="poly" id="edge7_Node000004_Node000002" title=" " alt="" coords="188,39,215,55,238,73,262,89,355,129,440,160,435,160,353,134,260,93,235,77,212,59,189,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,5,72,33"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="37,46,40,90,48,140,65,190,78,213,96,232,114,245,137,256,197,274,270,288,352,298,518,308,655,312,649,312,518,313,351,303,269,293,196,280,135,261,111,249,92,236,74,216,60,192,42,141,35,90,37,51"/>
+<area shape="poly" id="edge9_Node000004_Node000003" title=" " alt="" coords="68,40,112,65,160,89,192,98,218,103,278,112,443,159,439,161,277,118,217,108,191,104,158,93,109,70,69,45"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="511,196,562,234,621,273,676,299,670,298,619,277,559,239,510,201"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="215,5,368,33"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="310,43,352,89,407,129,460,160,454,160,404,133,348,93,309,49"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="506,5,576,33"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="533,46,491,162,487,159,529,49"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="834,5,918,33"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="844,41,826,59,814,77,809,85,800,93,770,107,743,111,716,113,683,118,526,163,524,157,682,112,716,107,743,106,768,102,797,89,805,82,810,74,822,55,839,44"/>
+<area shape="rect" id="Node000012" href="$struct_tiny_d_n_s_host.html" title="A static name&#45;to&#45;IPv4 mapping served authoritatively by TinyDNSServer, ahead of the cache and upstrea..." alt="" coords="813,161,920,188"/>
+<area shape="poly" id="edge15_Node000012_Node000007" title=" " alt="" coords="882,47,884,57,884,91,872,162,867,159,879,91,879,57,879,51"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="605,5,680,33"/>
+<area shape="poly" id="edge17_Node000001_Node000008" title=" " alt="" coords="682,40,695,56,710,88,719,123,726,194,723,256,716,301,713,297,718,256,721,194,714,124,705,90,691,58,681,45"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="624,44,582,93,502,162,499,158,578,89,620,47"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="392,5,482,33"/>
+<area shape="poly" id="edge10_Node000004_Node000009" title=" " alt="" coords="432,46,432,69,434,90,453,129,475,161,470,160,448,132,429,92,426,69,429,50"/>
+<area shape="rect" id="Node000010" href="$class_tiny_d_n_s_l_r_u_cache.html" title="Least&#45;recently&#45;used cache with a runtime capacity." alt="" coords="944,161,1088,188"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="990,197,933,236,844,275,762,301,761,296,842,270,931,232,985,199"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="947,5,1085,33"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="1018,47,1018,162,1014,159,1014,51"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="843,198,728,301,725,296,838,200"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="706,5,806,33"/>
+<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="752,46,754,70,760,90,767,98,775,103,796,113,854,161,849,160,793,117,772,107,763,102,755,92,748,70,749,51"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="1112,161,1171,188"/>
+<area shape="poly" id="edge16_Node000001_Node000014" title=" " alt="" coords="1130,201,1118,221,1101,236,1076,249,1040,261,952,282,856,297,772,308,772,303,856,292,951,276,1039,256,1073,244,1098,232,1114,217,1126,203"/>
+</map>
