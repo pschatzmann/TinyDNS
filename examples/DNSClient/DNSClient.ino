@@ -1,4 +1,5 @@
-// Resolves a hostname using DNS-over-TCP against 1.1.1.1:53.
+// Resolves a hostname using DNS-over-TCP against TINY_DNS_SERVER_IP
+// (Google 8.8.8.8 by default) on port 53.
 // Swap WiFiClient for WiFiClientSecure + port 853 to use DNS-over-TLS.
 #include <WiFi.h>
 #include <TinyDNSClient.h>
@@ -7,7 +8,7 @@ const char *ssid = "your-ssid";
 const char *password = "your-password";
 
 WiFiClient net;
-TinyDNSClient dns(net, IPAddress(1, 1, 1, 1));  // Cloudflare DNS, plain TCP:53
+TinyDNSClient dns(net, DNS_GOOGLE_PRIMARY);
 
 void setup() {
   Serial.begin(115200);

@@ -34,6 +34,15 @@
 #define TINY_DNS_DEFAULT_TIMEOUT_MS 5000
 #endif
 
+// Well-known public DNS servers. Use them as the server argument of
+// TinyDNSClient, e.g. TinyDNSClient dns(net, DNS_GOOGLE_PRIMARY);
+#define DNS_GOOGLE_PRIMARY IPAddress(8, 8, 8, 8)
+#define DNS_GOOGLE_SECONDARY IPAddress(8, 8, 4, 4)
+#define DNS_CLOUDFLARE_PRIMARY IPAddress(1, 1, 1, 1)
+#define DNS_CLOUDFLARE_SECONDARY IPAddress(1, 0, 0, 1)
+#define DNS_QUAD9_PRIMARY IPAddress(9, 9, 9, 9)
+#define DNS_OPENDNS_PRIMARY IPAddress(208, 67, 222, 222)
+
 /**
  * @brief Outcome of the most recent TinyDNSClient query, retrievable via
  * TinyDNSClient::lastResult().

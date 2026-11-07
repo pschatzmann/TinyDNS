@@ -1,5 +1,6 @@
 // Caching DNS server (DNS-over-TCP, port 53) backed by an LRU cache.
-// Cache hits are answered locally; misses are forwarded to 1.1.1.1.
+// Cache hits are answered locally; misses are forwarded to TINY_DNS_UPSTREAM_IP
+// (Google 8.8.8.8 by default).
 // Configure clients on the same network to use this board's IP as DNS
 // server. Note: this server speaks DNS over TCP only.
 #include <WiFi.h>
@@ -9,7 +10,7 @@ const char *ssid = "your-ssid";
 const char *password = "your-password";
 
 WiFiClient upstreamNet;  // used only for forwarding cache misses
-TinyDNSClient upstream(upstreamNet, IPAddress(1, 1, 1, 1));
+TinyDNSClient upstream(upstreamNet, DNS_GOOGLE_PRIMARY);
 
 // Static names answered locally, before the cache and upstream.
 // Add your own entries here. The array must stay alive while the server runs.
