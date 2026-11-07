@@ -12,7 +12,7 @@
  *
  * @code
  * WiFiClient net;
- * DNSResolver dns(net, IPAddress(1, 1, 1, 1));
+ * TinyDNSClient dns(net, IPAddress(1, 1, 1, 1));
  * IPAddress ip;
  * if (dns.resolve("example.com", ip)) { ... }
  * @endcode
@@ -35,8 +35,8 @@
 #endif
 
 /**
- * @brief Outcome of the most recent DNSResolver query, retrievable via
- * DNSResolver::lastResult().
+ * @brief Outcome of the most recent TinyDNSClient query, retrievable via
+ * TinyDNSClient::lastResult().
  */
 enum class DNSResult : uint8_t {
   Ok = 0,           ///< Query succeeded and a matching record was found.
@@ -53,7 +53,7 @@ enum class DNSResult : uint8_t {
  * @brief Header-only DNS resolver that queries over a generic Arduino
  * Client rather than UDP.
  *
- * DNSResolver speaks DNS-over-TCP framing (RFC 1035 section 4.2.2) on
+ * TinyDNSClient speaks DNS-over-TCP framing (RFC 1035 section 4.2.2) on
  * top of whatever Client implementation is supplied, so it works with
  * WiFiClient/EthernetClient (plain DNS-over-TCP, port 53) as well as
  * WiFiClientSecure (DNS-over-TLS, port 853). Each call to resolve() /
@@ -61,10 +61,10 @@ enum class DNSResult : uint8_t {
  * disconnects again, so the Client can be reused for other purposes
  * between calls.
  */
-class DNSResolver {
+class TinyDNSClient {
  public:
-  /** @brief Construct an unconfigured resolver; call begin() before use. */
-  DNSResolver() = default;
+  /** @brief Construct an unconfigured client; call begin() before use. */
+  TinyDNSClient() = default;
 
   /**
    * @brief Construct and configure a resolver in one step.
@@ -75,7 +75,7 @@ class DNSResolver {
    * @param port TCP port of the DNS server (53 for plain DNS, 853 for
    * DNS-over-TLS).
    */
-  DNSResolver(Client &client, IPAddress server, uint16_t port = 53) {
+  TinyDNSClient(Client &client, IPAddress server, uint16_t port = 53) {
     begin(client, server, port);
   }
 
@@ -176,6 +176,13 @@ class DNSResolver {
    */
   DNSResult lastResult() const { return lastResult_; }
 
+  /**
+   * @brief Get the TTL (in seconds) of the record returned by the most
+   * recent successful resolve()/resolveV6() call.
+   * @return The TTL reported by the DNS server, or 0 if none.
+   */
+  uint32_t lastTtl() const { return lastTtl_; }
+
  protected:
   static const uint16_t kTypeA = 1;      ///< DNS QTYPE/RTYPE for A records.
   static const uint16_t kTypeAAAA = 28;  ///< DNS QTYPE/RTYPE for AAAA records.
@@ -187,6 +194,7 @@ class DNSResolver {
   uint16_t nextId_ = 1;         ///< Next DNS transaction ID to use.
   uint8_t buffer_[TINY_DNS_MAX_PACKET_SIZE];  ///< Scratch query/response buffer.
   DNSResult lastResult_ = DNSResult::Ok;      ///< Outcome of the last query.
+  uint32_t lastTtl_ = 0;                      ///< TTL of the last matched answer.
 
   /**
    * @brief Record a failure outcome.
@@ -387,6 +395,8 @@ class DNSResolver {
       if (pos + 10 > len) return fail(DNSResult::InvalidResponse);
 
       uint16_t rtype = ((uint16_t)buf[pos] << 8) | buf[pos + 1];
+      uint32_t ttl = ((uint32_t)buf[pos + 4] << 24) | ((uint32_t)buf[pos + 5] << 16) |
+                     ((uint32_t)buf[pos + 6] << 8) | buf[pos + 7];
       pos += 8;  // TYPE(2) + CLASS(2) + TTL(4)
       uint16_t rdlen = ((uint16_t)buf[pos] << 8) | buf[pos + 1];
       pos += 2;
@@ -395,6 +405,7 @@ class DNSResolver {
       if (rtype == qtype && rdlen == rdataLen) {
         memcpy(rdataOut, buf + pos, rdataLen);
         lastResult_ = DNSResult::Ok;
+        lastTtl_ = ttl;
         return true;
       }
       pos += rdlen;
@@ -403,3 +414,9 @@ class DNSResolver {
     return fail(DNSResult::NotFound);
   }
 };
+
+/**
+ * @brief Backwards-compatible alias for the former class name.
+ * Prefer TinyDNSClient in new code.
+ */
+using DNSResolver = TinyDNSClient;

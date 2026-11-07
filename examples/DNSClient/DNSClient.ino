@@ -7,7 +7,7 @@ const char *ssid = "your-ssid";
 const char *password = "your-password";
 
 WiFiClient net;
-DNSResolver dns(net, IPAddress(1, 1, 1, 1));  // Cloudflare DNS, plain TCP:53
+TinyDNSClient dns(net, IPAddress(1, 1, 1, 1));  // Cloudflare DNS, plain TCP:53
 
 void setup() {
   Serial.begin(115200);

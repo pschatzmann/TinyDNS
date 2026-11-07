@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/tinydns_tests.dir/test_main.cpp.o -o tinydns_tests 

@@ -1,0 +1,34 @@
+Start testing: Nov 07 14:43 CET
+----------------------------------------------------------
+1/1 Testing: tinydns
+1/1 Test: tinydns
+Command: "/home/pschatzmann/Development/Arduino/libraries/TinyDNSClient/build/tests/tinydns_tests"
+Directory: /home/pschatzmann/Development/Arduino/libraries/TinyDNSClient/build/tests
+"tinydns" start time: Nov 07 14:43 CET
+Output:
+----------------------------------------------------------
+[ OK ] lru_begin_rejects_invalid_capacity
+[ OK ] lru_get_is_case_insensitive_and_keyed_by_qtype
+[ OK ] lru_evicts_least_recently_used
+[ OK ] lru_expired_entries_are_dropped
+[ OK ] lru_put_rejects_invalid_arguments
+[ OK ] lru_resize_drops_entries
+[ OK ] client_resolves_a_record
+[ OK ] client_resolves_aaaa_record
+[ OK ] client_reports_not_found
+[ OK ] client_reports_server_error
+[ OK ] client_reports_connect_failure
+[ OK ] client_rewrites_hostname_in_url
+[ OK ] server_answers_from_host_table_without_upstream
+[ OK ] server_caches_upstream_answers
+[ OK ] server_returns_nxdomain_when_upstream_has_no_record
+15 tests, 0 failed
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"tinydns" end time: Nov 07 14:43 CET
+"tinydns" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Nov 07 14:43 CET

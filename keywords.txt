@@ -1,13 +1,16 @@
 #######################################
-# Syntax Coloring Map For TinyDNSClient
+# Syntax Coloring Map For TinyDNS
 #######################################
 
 #######################################
 # Datatypes (KEYWORD1)
 #######################################
 
-DNSResolver	KEYWORD1
+TinyDNSClient	KEYWORD1
 DNSResult	KEYWORD1
+TinyDNSServer	KEYWORD1
+TinyDNSHost	KEYWORD1
+TinyDNSLRUCache	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -17,7 +20,20 @@ begin	KEYWORD2
 resolve	KEYWORD2
 resolveV6	KEYWORD2
 setTimeout	KEYWORD2
+setMaxTtl	KEYWORD2
 lastResult	KEYWORD2
+lastTtl	KEYWORD2
+handle	KEYWORD2
+clearCache	KEYWORD2
+cacheSize	KEYWORD2
+cacheCapacity	KEYWORD2
+cacheHits	KEYWORD2
+cacheMisses	KEYWORD2
+get	KEYWORD2
+put	KEYWORD2
+size	KEYWORD2
+capacity	KEYWORD2
+clear	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
