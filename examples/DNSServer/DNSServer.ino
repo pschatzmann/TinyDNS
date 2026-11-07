@@ -23,6 +23,9 @@ WiFiServer listener(53);
 
 void setup() {
   Serial.begin(115200);
+#if defined(ESP32)
+  WiFi.setSleep(false);  // disable WiFi powersave so the server stays reachable
+#endif
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);

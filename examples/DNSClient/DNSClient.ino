@@ -11,6 +11,9 @@ TinyDNSClient dns(net, IPAddress(1, 1, 1, 1));  // Cloudflare DNS, plain TCP:53
 
 void setup() {
   Serial.begin(115200);
+#if defined(ESP32)
+  WiFi.setSleep(false);  // disable WiFi powersave for reliable DNS replies
+#endif
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
