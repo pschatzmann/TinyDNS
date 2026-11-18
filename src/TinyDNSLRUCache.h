@@ -38,17 +38,7 @@
 #define TINY_DNS_CACHE_SIZE 16
 #endif
 
-// PSRAM is used on ESP32 boards built with PSRAM enabled (BOARD_HAS_PSRAM),
-// and on RP2350 boards with PSRAM attached (RP2350_PSRAM_CS, arduino-pico).
-// Define TINY_DNS_NO_PSRAM to force internal RAM.
-#if defined(ESP32) && defined(BOARD_HAS_PSRAM) && !defined(TINY_DNS_NO_PSRAM)
-#include <esp_heap_caps.h>
-#define TINY_DNS_USE_PSRAM 1
-#endif
-
-#if defined(ARDUINO_ARCH_RP2040) && defined(RP2350_PSRAM_CS) && !defined(TINY_DNS_NO_PSRAM)
-#define TINY_DNS_USE_PSRAM_PICO 1
-#endif
+#include "TinyDNSMemory.h"
 
 /**
  * @brief Least-recently-used cache with a runtime capacity.
@@ -214,28 +204,9 @@ class TinyDNSLRUCache {
     count_ = 0;
   }
 
-  static void *allocRaw(size_t bytes) {
-#if defined(TINY_DNS_USE_PSRAM)
-    void *p = heap_caps_calloc(1, bytes, MALLOC_CAP_SPIRAM);
-    if (p) return p;  // PSRAM, falls through to internal RAM if unavailable
-#elif defined(TINY_DNS_USE_PSRAM_PICO)
-    // arduino-pico: pmalloc() allocates from PSRAM; release with free().
-    void *p = pmalloc(bytes);
-    if (p) {
-      memset(p, 0, bytes);
-      return p;
-    }
-#endif
-    return calloc(1, bytes);
-  }
+  static void *allocRaw(size_t bytes) { return tinyDnsAlloc(bytes); }
 
-  static void freeRaw(void *p) {
-#if defined(TINY_DNS_USE_PSRAM)
-    heap_caps_free(p);
-#else
-    free(p);  // also correct for pmalloc() blocks on arduino-pico
-#endif
-  }
+  static void freeRaw(void *p) { tinyDnsFree(p); }
 
   static char lower(char c) { return (c >= 'A' && c <= 'Z') ? c + 32 : c; }
 

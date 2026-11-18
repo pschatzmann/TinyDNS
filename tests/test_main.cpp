@@ -4,6 +4,8 @@
 #include <IPAddress.h>
 #include <TinyDNS.h>
 
+#include "data/test_store.h"
+
 #include <algorithm>
 #include <cstdio>
 #include <cstring>
@@ -355,6 +357,426 @@ TEST(server_returns_nxdomain_when_upstream_has_no_record) {
   // Offset 2 skips the TCP length prefix; RCODE is the low nibble of byte 3.
   CHECK(peer.out.size() >= 6);
   CHECK((peer.out[5] & 0x0F) == 3);  // RCODE = NXDOMAIN
+}
+
+// ---------------------------------------------------------------------------
+// TinyDNSBlocklist
+// ---------------------------------------------------------------------------
+
+// Minimal Stream stand-in: available()/read() like Arduino Stream or File.
+struct MemStream {
+  std::string data;
+  size_t pos = 0;
+  explicit MemStream(const std::string &s) : data(s) {}
+  int available() { return (int)(data.size() - pos); }
+  int read() { return pos < data.size() ? (uint8_t)data[pos++] : -1; }
+};
+
+TEST(blocklist_suffix_match) {
+  TinyDNSBlocklist bl;
+  CHECK(bl.blockDomain("ads.example.com"));
+  CHECK(bl.check("ads.example.com") == TinyDNSBlockAction::Block);
+  CHECK(bl.check("a.b.ads.example.com") == TinyDNSBlockAction::Block);
+  CHECK(bl.check("ADS.Example.COM") == TinyDNSBlockAction::Block);
+  CHECK(bl.check("ads.example.com.") == TinyDNSBlockAction::Block);
+  CHECK(bl.check("example.com") == TinyDNSBlockAction::None);
+  CHECK(bl.check("xads.example.com") == TinyDNSBlockAction::None);
+  CHECK(bl.check("ads.example.com.evil.net") == TinyDNSBlockAction::None);
+  CHECK(bl.isBlocked("x.ads.example.com"));
+  CHECK(bl.size() == 1);
+}
+
+TEST(blocklist_allow_beats_parent_block) {
+  TinyDNSBlocklist bl;
+  bl.blockDomain("ads.com");
+  bl.allowDomain("good.ads.com");
+  CHECK(bl.check("good.ads.com") == TinyDNSBlockAction::Allow);
+  CHECK(bl.check("x.good.ads.com") == TinyDNSBlockAction::Allow);
+  CHECK(bl.check("ads.com") == TinyDNSBlockAction::Block);
+  CHECK(bl.check("bad.ads.com") == TinyDNSBlockAction::Block);
+}
+
+TEST(blocklist_more_specific_block_under_allow) {
+  TinyDNSBlocklist bl;
+  bl.allowDomain("ads.com");
+  bl.blockDomain("t.ads.com");
+  CHECK(bl.check("t.ads.com") == TinyDNSBlockAction::Block);
+  CHECK(bl.check("x.t.ads.com") == TinyDNSBlockAction::Block);
+  CHECK(bl.check("u.ads.com") == TinyDNSBlockAction::Allow);
+}
+
+TEST(blocklist_same_name_allow_wins_and_remove_clears) {
+  TinyDNSBlocklist bl;
+  bl.blockDomain("x.com");
+  bl.allowDomain("x.com");
+  CHECK(bl.check("x.com") == TinyDNSBlockAction::Allow);
+  CHECK(bl.size() == 1);
+  CHECK(bl.removeDomain("X.com"));
+  CHECK(bl.check("x.com") == TinyDNSBlockAction::None);
+  CHECK(bl.size() == 0);
+  CHECK(!bl.removeDomain("x.com"));
+}
+
+TEST(blocklist_parses_hosts_format) {
+  const std::string text =
+      "# StevenBlack-style hosts file\r\n"
+      "127.0.0.1 localhost\r\n"
+      "::1 ip6-localhost\r\n"
+      "0.0.0.0 broadcasthost\n"
+      "192.168.1.10 nas.lan\n"          // not a sinkhole address: skipped
+      "0.0.0.0\tads.one.org  # comment\n"
+      "127.0.0.1   *.tracker.net\n"     // wildcard prefix stripped
+      "0.0.0.0 bad..name\n"             // invalid: skipped
+      "0.0.0.0 under_score.test\n"
+      "0.0.0.0 last.example";           // no trailing newline
+  TinyDNSBlocklist bl;
+  MemStream in(text);
+  CHECK(bl.loadHosts(in) == 4);
+  CHECK(bl.isBlocked("ads.one.org"));
+  CHECK(bl.isBlocked("www.tracker.net"));
+  CHECK(bl.isBlocked("under_score.test"));
+  CHECK(bl.isBlocked("last.example"));
+  CHECK(!bl.isBlocked("localhost"));
+  CHECK(!bl.isBlocked("nas.lan"));
+  CHECK(bl.size() == 4);
+}
+
+TEST(blocklist_plain_lists_and_allowlist_loading) {
+  TinyDNSBlocklist bl;
+  MemStream block("ads.plain.net\n# comment\n\ntrack.plain.net\n");
+  CHECK(bl.loadHosts(block) == 2);
+  CHECK(bl.isBlocked("ads.plain.net"));
+  CHECK(bl.isBlocked("sub.track.plain.net"));
+
+  MemStream allow("good.plain.net\n0.0.0.0 ads.plain.net\n");
+  CHECK(bl.loadAllowList(allow) == 2);
+  CHECK(bl.check("good.plain.net") == TinyDNSBlockAction::Allow);
+  CHECK(bl.check("ads.plain.net") == TinyDNSBlockAction::Allow);
+  CHECK(bl.check("track.plain.net") == TinyDNSBlockAction::Block);
+}
+
+TEST(blocklist_parses_adblock_format) {
+  const std::string text =
+      "[Adblock Plus]\r\n"
+      "! Title: test list\n"
+      "||telemetry.001-studio.com^\n"
+      "||ad.001zb.com^\r\n"
+      "||plain.example^   \n"
+      "||with.option.example^$third-party\n"   // options: skipped
+      "||with.path.example/ads^\n"             // path: skipped
+      "example.com##.ad-banner\n"              // cosmetic: must not block example.com
+      "example.org#@#.ad\n"                    // cosmetic exception: skipped
+      "@@||allowed.ad.example^\n";             // allow rule
+  TinyDNSBlocklist bl;
+  MemStream in(text);
+  CHECK(bl.loadHosts(in) == 4);
+  CHECK(bl.isBlocked("telemetry.001-studio.com"));
+  CHECK(bl.isBlocked("sub.ad.001zb.com"));
+  CHECK(bl.isBlocked("plain.example"));
+  CHECK(bl.check("with.option.example") == TinyDNSBlockAction::None);
+  CHECK(bl.check("with.path.example") == TinyDNSBlockAction::None);
+  CHECK(bl.check("example.com") == TinyDNSBlockAction::None);
+  CHECK(bl.check("example.org") == TinyDNSBlockAction::None);
+  CHECK(bl.check("allowed.ad.example") == TinyDNSBlockAction::Allow);
+  CHECK(bl.check("x.allowed.ad.example") == TinyDNSBlockAction::Allow);
+  CHECK(bl.size() == 4);  // three blocks plus one allow rule
+}
+
+TEST(blocklist_skips_overlong_lines) {
+  std::string longLine = "0.0.0.0 ";
+  longLine += std::string(300, 'a') + ".com";
+  MemStream in(longLine + "\n0.0.0.0 ok.test\n");
+  TinyDNSBlocklist bl;
+  CHECK(bl.loadHosts(in) == 1);
+  CHECK(bl.isBlocked("ok.test"));
+  CHECK(bl.size() == 1);
+}
+
+TEST(blocklist_rejects_invalid_names) {
+  TinyDNSBlocklist bl;
+  CHECK(!bl.blockDomain(""));
+  CHECK(!bl.blockDomain("."));
+  CHECK(!bl.blockDomain("a..b"));
+  CHECK(!bl.blockDomain(".a"));
+  CHECK(!bl.blockDomain("a b"));
+  CHECK(!bl.blockDomain("*.x"));
+  CHECK(!bl.blockDomain(nullptr));
+  CHECK(bl.size() == 0);
+  CHECK(bl.check("a..b") == TinyDNSBlockAction::None);
+}
+
+TEST(blocklist_grows_and_supports_removal) {
+  TinyDNSBlocklist bl;
+  char name[32];
+  for (int i = 0; i < 1000; i++) {
+    snprintf(name, sizeof(name), "d%d.test", i);
+    CHECK(bl.blockDomain(name));
+  }
+  CHECK(bl.size() == 1000);
+  for (int i = 0; i < 1000; i++) {
+    snprintf(name, sizeof(name), "h.d%d.test", i);
+    CHECK(bl.isBlocked(name));
+  }
+  CHECK(bl.removeDomain("d500.test"));
+  CHECK(bl.check("d500.test") == TinyDNSBlockAction::None);
+  CHECK(bl.isBlocked("d501.test"));
+  CHECK(bl.size() == 999);
+  CHECK(bl.blockDomain("d500.test"));
+  CHECK(bl.size() == 1000);
+  bl.clear();
+  CHECK(bl.size() == 0);
+  CHECK(bl.check("d1.test") == TinyDNSBlockAction::None);
+}
+
+// Reply layout from sendReply(): out[0..1] is the TCP prefix, out[2..3] the
+// ID, out[5] the RCODE (low nibble), out[8..9] the ANCOUNT.
+static int replyRcode(const std::vector<uint8_t> &o) { return o[5] & 0x0F; }
+static int replyAnswers(const std::vector<uint8_t> &o) {
+  return (o[8] << 8) | o[9];
+}
+
+TEST(server_sinkhole_answers_blocked_a_without_upstream) {
+  FakeClient upstreamNet;
+  TinyDNSClient upstream(upstreamNet, IPAddress(1, 1, 1, 1));
+  TinyDNSServer server(upstream);
+  CHECK(server.blocklist().blockDomain("ads.test"));
+
+  FakeClient peer;
+  peer.in = makeQueryFramed(21, "tracker.ads.test", 1);
+  CHECK(server.handle(peer));
+  CHECK(upstreamNet.connects == 0);
+  CHECK(server.blockedCount() == 1);
+  const std::vector<uint8_t> &o = peer.out;
+  CHECK(replyRcode(o) == 0);
+  CHECK(replyAnswers(o) == 1);
+  CHECK(o[o.size() - 4] == 0 && o[o.size() - 1] == 0);  // 0.0.0.0
+  // Sinkhole TTL (default 60 s) sits 10 bytes before the end of the message
+  CHECK(o[o.size() - 10] == 0 && o[o.size() - 9] == 0 &&
+        o[o.size() - 8] == 0 && o[o.size() - 7] == 60);
+}
+
+TEST(server_sinkhole_custom_address_ttl_and_nodata) {
+  FakeClient upstreamNet;
+  TinyDNSClient upstream(upstreamNet, IPAddress(1, 1, 1, 1));
+  TinyDNSServer server(upstream);
+  server.blocklist().blockDomain("ads.test");
+  server.setSinkholeAddress(IPAddress(10, 0, 0, 1));
+  server.setSinkholeTtl(5);
+
+  FakeClient a;
+  a.in = makeQueryFramed(22, "ads.test", 1);
+  CHECK(server.handle(a));
+  CHECK(replyAnswers(a.out) == 1);
+  CHECK(a.out[a.out.size() - 4] == 10 && a.out[a.out.size() - 1] == 1);
+  CHECK(a.out[a.out.size() - 7] == 5);
+
+  FakeClient aaaa;
+  aaaa.in = makeQueryFramed(23, "ads.test", 28);
+  CHECK(server.handle(aaaa));
+  CHECK(replyRcode(aaaa.out) == 0);
+  CHECK(replyAnswers(aaaa.out) == 0);  // NODATA
+
+  FakeClient https;  // HTTPS/SVCB must not bypass the sinkhole
+  https.in = makeQueryFramed(24, "ads.test", 65);
+  CHECK(server.handle(https));
+  CHECK(replyRcode(https.out) == 0);
+  CHECK(replyAnswers(https.out) == 0);
+  CHECK(upstreamNet.connects == 0);
+  CHECK(server.blockedCount() == 3);
+}
+
+TEST(server_nxdomain_and_refused_policies) {
+  FakeClient upstreamNet;
+  TinyDNSClient upstream(upstreamNet, IPAddress(1, 1, 1, 1));
+  TinyDNSServer server(upstream);
+  server.blocklist().blockDomain("ads.test");
+
+  server.setBlockPolicy(TinyDNSBlockPolicy::NXDomain);
+  CHECK(server.blockPolicy() == TinyDNSBlockPolicy::NXDomain);
+  FakeClient a;
+  a.in = makeQueryFramed(31, "ads.test", 1);
+  CHECK(server.handle(a));
+  CHECK(replyRcode(a.out) == 3);
+  CHECK(replyAnswers(a.out) == 0);
+
+  server.setBlockPolicy(TinyDNSBlockPolicy::Refused);
+  FakeClient aaaa;
+  aaaa.in = makeQueryFramed(32, "ads.test", 28);
+  CHECK(server.handle(aaaa));
+  CHECK(replyRcode(aaaa.out) == 5);
+  CHECK(upstreamNet.connects == 0);
+  CHECK(server.blockedCount() == 2);
+}
+
+TEST(server_allowlisted_name_reaches_upstream) {
+  FakeClient upstreamNet;
+  upstreamNet.in = makeResponse(1, "ok.ads.test", 1, {1, 2, 3, 4}, 300);
+  TinyDNSClient upstream(upstreamNet, IPAddress(1, 1, 1, 1));
+  TinyDNSServer server(upstream);
+  CHECK(server.begin(8));
+  server.blocklist().blockDomain("ads.test");
+  server.blocklist().allowDomain("ok.ads.test");
+
+  FakeClient peer;
+  peer.in = makeQueryFramed(41, "ok.ads.test", 1);
+  CHECK(server.handle(peer));
+  CHECK(upstreamNet.connects == 1);
+  CHECK(server.blockedCount() == 0);
+  CHECK(peer.out[peer.out.size() - 4] == 1 && peer.out[peer.out.size() - 1] == 4);
+}
+
+TEST(server_blocklist_precedes_host_table) {
+  TinyDNSHost hosts[] = {{"esp32.local", IPAddress(192, 168, 1, 50)}};
+  FakeClient upstreamNet;
+  TinyDNSClient upstream(upstreamNet, IPAddress(1, 1, 1, 1));
+  TinyDNSServer server(upstream, hosts);
+  server.blocklist().blockDomain("esp32.local");
+
+  FakeClient peer;
+  peer.in = makeQueryFramed(51, "esp32.local", 1);
+  CHECK(server.handle(peer));
+  CHECK(peer.out[peer.out.size() - 4] == 0);  // sinkhole, not 192.168.1.50
+  CHECK(server.blockedCount() == 1);
+}
+
+// ---------------------------------------------------------------------------
+// TinyDNSHuffmanStore
+// ---------------------------------------------------------------------------
+
+static TinyDNSHuffmanStore makeTestStore() {
+  return TinyDNSHuffmanStore(test_store);
+}
+
+TEST(store_begin_and_count) {
+  TinyDNSHuffmanStore store = makeTestStore();
+  CHECK(!store.ready());
+  CHECK(store.begin());
+  CHECK(store.ready());
+  CHECK(store.count() == test_store_names_count);
+}
+
+TEST(store_contains_every_member) {
+  TinyDNSHuffmanStore store = makeTestStore();
+  CHECK(store.begin());
+  for (unsigned i = 0; i < test_store_names_count; i++) {
+    if (!store.contains(test_store_names[i])) {
+      fprintf(stderr, "  missing: %s\n", test_store_names[i]);
+      CHECK(false);
+    }
+  }
+}
+
+TEST(store_rejects_non_members) {
+  TinyDNSHuffmanStore store = makeTestStore();
+  CHECK(store.begin());
+  CHECK(!store.contains("example.com"));
+  CHECK(!store.contains("com"));
+  CHECK(!store.contains("ads.example"));
+  CHECK(!store.contains("ads.example.com.evil"));
+  CHECK(!store.contains("xads.example.com"));
+  CHECK(!store.contains("x.ads.example.com"));  // contains() is exact-match
+  CHECK(!store.contains("same.prefix"));
+  CHECK(!store.contains("a.b.c.d.evil"));
+  CHECK(!store.contains("zz.example.com"));
+  CHECK(!store.contains("bad..name"));
+  CHECK(!store.contains("*.x"));
+  CHECK(!store.contains(""));
+  CHECK(!store.contains(nullptr));
+}
+
+TEST(store_is_case_insensitive_and_ignores_trailing_dot) {
+  TinyDNSHuffmanStore store = makeTestStore();
+  CHECK(store.begin());
+  CHECK(store.contains("ADS.Example.COM."));
+  CHECK(store.contains("Tracker.NET"));
+}
+
+TEST(store_rejects_corrupt_layout) {
+  // Zero block size
+  TinyDNSHuffmanStoreData d = test_store;
+  d.blockSize = 0;
+  TinyDNSHuffmanStore a(d);
+  CHECK(!a.begin());
+  CHECK(!a.contains("tracker.net"));
+
+  // Block count inconsistent with count / blockSize
+  d = test_store;
+  d.blockCount += 1;
+  TinyDNSHuffmanStore b(d);
+  CHECK(!b.begin());
+
+  // Code length above the 15-bit limit
+  uint8_t badLens[256];
+  memcpy(badLens, test_store_prefix_lens, sizeof(badLens));
+  for (int i = 0; i < 256; i++) {
+    if (badLens[i]) { badLens[i] = 16; break; }
+  }
+  d = test_store;
+  d.prefixLens = badLens;
+  TinyDNSHuffmanStore c(d);
+  CHECK(!c.begin());
+
+  // Over-subscribed code: every symbol has length 1
+  uint8_t fullLens[256];
+  memset(fullLens, 1, sizeof(fullLens));
+  d = test_store;
+  d.suffixLens = fullLens;
+  TinyDNSHuffmanStore e(d);
+  CHECK(!e.begin());
+}
+
+TEST(blocklist_uses_attached_store) {
+  TinyDNSHuffmanStore store = makeTestStore();
+  CHECK(store.begin());
+  TinyDNSBlocklist bl;
+  bl.attachStore(&store);
+  CHECK(bl.check("ads.example.com") == TinyDNSBlockAction::Block);
+  CHECK(bl.check("sub.ads.example.com") == TinyDNSBlockAction::Block);
+  CHECK(bl.check("www.wild.example.net") == TinyDNSBlockAction::Block);
+  CHECK(bl.check("example.com") == TinyDNSBlockAction::None);
+  CHECK(bl.size() == 0);  // store entries are not RAM rules
+}
+
+TEST(blocklist_ram_allow_overrides_store) {
+  TinyDNSHuffmanStore store = makeTestStore();
+  CHECK(store.begin());
+  TinyDNSBlocklist bl;
+  bl.attachStore(&store);
+  CHECK(bl.allowDomain("ads.example.com"));
+  CHECK(bl.check("ads.example.com") == TinyDNSBlockAction::Allow);
+  CHECK(bl.check("x.ads.example.com") == TinyDNSBlockAction::Allow);
+  CHECK(bl.check("tracker.net") == TinyDNSBlockAction::Block);
+}
+
+TEST(blocklist_ram_and_store_rules_combine) {
+  TinyDNSHuffmanStore store = makeTestStore();
+  CHECK(store.begin());
+  TinyDNSBlocklist bl;
+  bl.attachStore(&store);
+  CHECK(bl.blockDomain("other.net"));
+  CHECK(bl.isBlocked("other.net"));
+  CHECK(bl.isBlocked("tracker.net"));
+  CHECK(bl.size() == 1);
+  bl.attachStore(nullptr);
+  CHECK(!bl.isBlocked("tracker.net"));
+  CHECK(bl.isBlocked("other.net"));
+}
+
+TEST(server_sinkholes_names_from_store) {
+  TinyDNSHuffmanStore store = makeTestStore();
+  CHECK(store.begin());
+  FakeClient upstreamNet;
+  TinyDNSClient upstream(upstreamNet, IPAddress(1, 1, 1, 1));
+  TinyDNSServer server(upstream);
+  server.blocklist().attachStore(&store);
+
+  FakeClient peer;
+  peer.in = makeQueryFramed(61, "tracker.net", 1);
+  CHECK(server.handle(peer));
+  CHECK(upstreamNet.connects == 0);
+  CHECK(server.blockedCount() == 1);
+  CHECK(replyAnswers(peer.out) == 1);
+  CHECK(peer.out[peer.out.size() - 4] == 0);  // sinkhole 0.0.0.0
 }
 
 // ---------------------------------------------------------------------------

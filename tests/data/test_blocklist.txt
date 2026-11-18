@@ -1,0 +1,19 @@
+! test fixture for the Huffman store
+||ads.example.com^
+||tracker.net^
+||a.b.c.d.evil.org^
+||x.y^
+||same.prefix.one^
+||same.prefix.two^
+||same.prefixes.three^
+||zeta.example.com^
+||alpha.example.com^
+||beta.example.com^
+||gamma.example.org^
+0.0.0.0 hosts.example.net
+127.0.0.1	tabbed.example.net  # trailing comment
+0.0.0.0 *.wild.example.net
+0.0.0.0 localhost
+192.168.1.10 nas.lan
+||ads.example.com^
+||aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.long.test^

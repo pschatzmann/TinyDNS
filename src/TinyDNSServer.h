@@ -14,6 +14,7 @@
 #include <Client.h>
 #include <string.h>
 
+#include "TinyDNSBlocklist.h"
 #include "TinyDNSClient.h"
 #include "TinyDNSLRUCache.h"
 
@@ -24,6 +25,23 @@
 #ifndef TINY_DNS_MAX_TTL
 #define TINY_DNS_MAX_TTL 3600
 #endif
+
+#ifndef TINY_DNS_BLOCK_TTL
+#define TINY_DNS_BLOCK_TTL 60
+#endif
+
+/**
+ * @brief How TinyDNSServer answers queries for blocked names.
+ */
+enum class TinyDNSBlockPolicy : uint8_t {
+  /// A queries get the sinkhole address (see setSinkholeAddress()); other
+  /// types get NOERROR with no answer (NODATA).
+  Sinkhole = 0,
+  /// NXDOMAIN for every query type.
+  NXDomain,
+  /// REFUSED for every query type.
+  Refused,
+};
 
 /**
  * @brief A static name-to-IPv4 mapping served authoritatively by
@@ -85,6 +103,32 @@ class TinyDNSServer {
     hosts_ = hosts;
     hostCount_ = count;
   }
+
+  /**
+   * @brief The blocklist and allowlist checked before the host table, the
+   * cache and upstream. Add rules with blockDomain(), allowDomain() or
+   * loadHosts().
+   */
+  TinyDNSBlocklist &blocklist() { return blocklist_; }
+  const TinyDNSBlocklist &blocklist() const { return blocklist_; }
+
+  /** @brief Choose how blocked names are answered. Default: Sinkhole. */
+  void setBlockPolicy(TinyDNSBlockPolicy policy) { blockPolicy_ = policy; }
+  TinyDNSBlockPolicy blockPolicy() const { return blockPolicy_; }
+
+  /**
+   * @brief IPv4 address returned for blocked A queries under the Sinkhole
+   * policy. Default 0.0.0.0, which makes the browser fail fast.
+   */
+  void setSinkholeAddress(IPAddress ip) {
+    for (int k = 0; k < 4; k++) sinkhole_[k] = ip[k];
+  }
+
+  /** @brief TTL of sinkhole answers, in seconds. Default 60. */
+  void setSinkholeTtl(uint32_t seconds) { sinkholeTtl_ = seconds; }
+
+  /** @brief Number of queries answered by the blocking policy. */
+  uint32_t blockedCount() const { return blocked_; }
 
   /** @brief Timeout for reading a query from the incoming client, in ms. */
   void setTimeout(uint32_t timeoutMs) { timeoutMs_ = timeoutMs; }
@@ -152,6 +196,13 @@ class TinyDNSServer {
     }
     size_t questionLen = qEnd - 12;
 
+    // Blocklist first, for every QTYPE, so HTTPS/SVCB records of a blocked
+    // name cannot bypass the sinkhole. Allowlisted names fall through.
+    if (blocklist_.check(name) == TinyDNSBlockAction::Block) {
+      blocked_++;
+      return sendBlocked(client, id, questionLen, qtype);
+    }
+
     if (qtype != kTypeA && qtype != kTypeAAAA) {
       return sendReply(client, id, RCODE_NOTIMP, questionLen, qtype, nullptr, 0, 0);
     }
@@ -218,15 +269,21 @@ class TinyDNSServer {
   static const uint8_t RCODE_SERVFAIL = 2;
   static const uint8_t RCODE_NXDOMAIN = 3;
   static const uint8_t RCODE_NOTIMP = 4;
+  static const uint8_t RCODE_REFUSED = 5;
 
   TinyDNSClient &upstream_;
   Cache cache_;
+  TinyDNSBlocklist blocklist_;
+  TinyDNSBlockPolicy blockPolicy_ = TinyDNSBlockPolicy::Sinkhole;
+  uint8_t sinkhole_[4] = {0, 0, 0, 0};
+  uint32_t sinkholeTtl_ = TINY_DNS_BLOCK_TTL;
   const TinyDNSHost *hosts_ = nullptr;
   size_t hostCount_ = 0;
   uint32_t timeoutMs_ = TINY_DNS_DEFAULT_TIMEOUT_MS;
   uint32_t maxTtl_ = TINY_DNS_MAX_TTL;
   uint32_t hits_ = 0;
   uint32_t misses_ = 0;
+  uint32_t blocked_ = 0;
   uint8_t query_[TINY_DNS_MAX_PACKET_SIZE];  ///< Incoming query buffer.
   uint8_t reply_[TINY_DNS_MAX_PACKET_SIZE];  ///< Outgoing response buffer.
 
@@ -303,6 +360,27 @@ class TinyDNSServer {
     qtype = ((uint16_t)query_[pos] << 8) | query_[pos + 1];
     qEnd = pos + 4;
     return true;
+  }
+
+  /**
+   * @brief Answer a query for a blocked name according to blockPolicy_.
+   */
+  bool sendBlocked(Client &client, uint16_t id, size_t questionLen,
+                   uint16_t qtype) {
+    switch (blockPolicy_) {
+      case TinyDNSBlockPolicy::NXDomain:
+        return sendReply(client, id, RCODE_NXDOMAIN, questionLen, qtype, nullptr, 0, 0);
+      case TinyDNSBlockPolicy::Refused:
+        return sendReply(client, id, RCODE_REFUSED, questionLen, qtype, nullptr, 0, 0);
+      case TinyDNSBlockPolicy::Sinkhole:
+      default:
+        if (qtype == kTypeA) {
+          return sendReply(client, id, RCODE_OK, questionLen, qtype, sinkhole_, 4,
+                           sinkholeTtl_);
+        }
+        // AAAA and other types: the sinkhole has no IPv6 address, so NODATA
+        return sendReply(client, id, RCODE_OK, questionLen, qtype, nullptr, 0, 0);
+    }
   }
 
   /**

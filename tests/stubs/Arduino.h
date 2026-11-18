@@ -7,6 +7,10 @@
 #include <cstring>
 #include <string>
 
+#ifndef PROGMEM
+#define PROGMEM
+#endif
+
 // Mock clock, defined in test_main.cpp. Tests advance it directly.
 extern uint32_t g_mockMillis;
 inline uint32_t millis() { return g_mockMillis; }
