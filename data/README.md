@@ -23,5 +23,6 @@ python3 tools/gen_huffman_blocklist.py data/hagezi-pro.txt.gz \
 ```
 
 The generated files are stored in `examples/AdBlocker/` and are used by the
-sketch. Loading the same list as plain text into RAM (`TinyDNSBlocklist`)
-needs roughly 14 MB of RAM, so use the flash store on microcontrollers.
+sketch. Loading the same list as plain text into the RAM blocklist (`TinyDNSBlocklist`)
+needs roughly 11 MB. On ESP32 and RP2350 boards with PSRAM, the RAM blocklist
+uses PSRAM automatically; on other boards, use the flash store.
