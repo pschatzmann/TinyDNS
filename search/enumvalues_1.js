@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['invalidresponse_0',['InvalidResponse',['../_tiny_d_n_s_client_8h.html#a00fc95e780e20ac9c36242ef62133315a33f317695948b584444f4b7525da594e',1,'TinyDNSClient.h']]]
+  ['block_0',['Block',['../_tiny_d_n_s_blocklist_8h.html#a2c215061b25ae22a8758307e9ead043aae1e4c8c9ccd9fc39c391da4bcd093fb2',1,'TinyDNSBlocklist.h']]]
 ];

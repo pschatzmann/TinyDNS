@@ -1,0 +1,9 @@
+<map id="TinyDNSHuffmanStoreData" name="TinyDNSHuffmanStoreData">
+<area shape="rect" id="Node000001" title="Description of one Huffman&#45;coded store. Usually a generated static const object, so all pointers refe..." alt="" coords="67,166,266,194"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,80,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="42,46,49,95,57,119,70,140,86,154,106,165,100,166,83,158,66,144,52,121,44,96,40,51"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="129,5,204,33"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="169,47,169,166,164,165,164,50"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="231,5,297,33"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="265,47,259,96,250,121,237,144,222,158,205,168,203,163,219,153,232,140,245,119,254,94,262,51"/>
+</map>

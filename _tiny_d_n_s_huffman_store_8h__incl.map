@@ -1,0 +1,9 @@
+<map id="src/TinyDNSHuffmanStore.h" name="src/TinyDNSHuffmanStore.h">
+<area shape="rect" id="Node000001" title="Read&#45;only, Huffman&#45;coded set of blocked domains, stored in PROGMEM." alt="" coords="47,5,250,33"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,81,89,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="133,33,79,74,76,70,128,34"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="113,81,184,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="150,32,151,67,146,64,147,36"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="208,81,278,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="166,31,217,71,212,72,164,36"/>
+</map>

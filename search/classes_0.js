@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['entry_0',['Entry',['../struct_tiny_d_n_s_l_r_u_cache_1_1_entry.html',1,'TinyDNSLRUCache']]]
+  ['bitreader_0',['BitReader',['../struct_tiny_d_n_s_huffman_store_1_1_bit_reader.html',1,'TinyDNSHuffmanStore']]]
 ];

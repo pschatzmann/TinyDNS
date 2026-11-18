@@ -78,25 +78,32 @@ $(function() {
 <ul>
 <li>**<a href="https://pschatzmann.github.io/TinyDNS/class_tiny_d_n_s_client.html"><code>TinyDNSClient</code></a>**: resolves A and AAAA records.</li>
 <li>**<a href="https://pschatzmann.github.io/TinyDNS/class_tiny_d_n_s_server.html"><code>TinyDNSServer</code></a>**: a caching DNS server with a static host table and an LRU cache. Cache misses are forwarded to an upstream <a href="https://pschatzmann.github.io/TinyDNS/class_tiny_d_n_s_client.html"><code>TinyDNSClient</code></a>.</li>
+<li>**<code><a class="el" href="class_tiny_d_n_s_blocklist.html" title="Suffix-matching set of blocked and allowed domain names.">TinyDNSBlocklist</a></code>**: a suffix-matching blocklist and allowlist. Rules for <code>ads.example.com</code> also cover its subdomains. Lists can be loaded from hosts, AdBlock (<code>||domain^</code>) or plain-domain text. Allow rules override block rules.</li>
+<li>**<code><a class="el" href="class_tiny_d_n_s_huffman_store.html" title="Exact-match lookup over a Huffman-coded domain store.">TinyDNSHuffmanStore</a></code>**: a read-only, Huffman-coded blocklist kept in flash (PROGMEM) and read in place. It holds about 250k domains in roughly 1.8 MB. Attach it to the server's blocklist with <code>attachStore()</code>.</li>
+<li>The server answers blocked names with a configurable sinkhole policy (<code>Sinkhole</code>, <code>NXDomain</code> or <code>Refused</code>).</li>
 </ul>
+<p>The server speaks DNS over TCP only. Clients that send UDP queries on port 53 will not reach it.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
+Ad blocking</h1>
+<p>To block ads and trackers, see the wiki page <a href="https://github.com/pschatzmann/TinyDNS/wiki/AdBlocking">Ad blocking</a>. It covers the RAM and flash blocklists, the generator, the sinkhole policies, and the <code>examples/AdBlocker</code> sketch.</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
 Installation</h1>
-<h2><a class="anchor" id="autotoc_md2"></a>
+<h2><a class="anchor" id="autotoc_md3"></a>
 Arduino IDE</h2>
 <p>Download the library as a ZIP file and add it with <em>Sketch → Include Library → Add .ZIP Library…</em>, or clone it into your Arduino libraries folder:</p>
 <div class="fragment"><div class="line">cd ~/Documents/Arduino/libraries</div>
 <div class="line">git clone https://github.com/pschatzmann/TinyDNS.git</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md4"></a>
 PlatformIO</h2>
 <div class="fragment"><div class="line">lib_deps = https://github.com/pschatzmann/TinyDNS.git</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
 Documentation</h1>
 <ul>
 <li><a href="https://github.com/pschatzmann/TinyDNS/wiki">Wiki</a>: usage guides for the client, server, configuration (including PSRAM), and testing.</li>
 <li><a href="https://pschatzmann.github.io/TinyDNS/annotated.html">Doxygen API reference</a>.</li>
-<li><a href="examples/"><code>examples/</code></a>: <code>DNSClient</code> and <code>DNSServer</code> sketches.</li>
+<li><a href="examples/"><code>examples/</code></a>: <code>DNSClient</code>, <code>DNSServer</code> and <code>AdBlocker</code> sketches.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md5"></a>
+<h1><a class="anchor" id="autotoc_md6"></a>
 License</h1>
 <p>Released under the MIT License. See [LICENSE](LICENSE). </p>
 </div></div><!-- PageDoc -->

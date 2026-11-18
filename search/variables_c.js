@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['server_5f_0',['server_',['../class_tiny_d_n_s_client.html#aa1c9a64fb7bec5c9fad68ee2fd412fb7',1,'TinyDNSClient']]]
+  ['off_0',['off',['../struct_tiny_d_n_s_blocklist_1_1_slot.html#a7e90cee8005eb1ceb56aa38112fd4487',1,'TinyDNSBlocklist::Slot']]]
 ];

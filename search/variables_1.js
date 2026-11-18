@@ -1,7 +1,11 @@
 var searchData=
 [
-  ['cache_5f_0',['cache_',['../class_tiny_d_n_s_server.html#ae8108dfcff2eb6b78d338893b1ffd7e9',1,'TinyDNSServer']]],
-  ['captive_5f_1',['captive_',['../class_tiny_d_n_s_client.html#a5b60f67787c6ac6797c9d32813ab7010',1,'TinyDNSClient']]],
-  ['captiveip_5f_2',['captiveIp_',['../class_tiny_d_n_s_client.html#a7d5e8fae68ca7749729c6333d06681f2',1,'TinyDNSClient']]],
-  ['client_5f_3',['client_',['../class_tiny_d_n_s_client.html#afcadb9597767b4cfd23e408ee6a9bde7',1,'TinyDNSClient']]]
+  ['bitcount_0',['bitCount',['../struct_tiny_d_n_s_huffman_store_1_1_bit_reader.html#a6b30b1d6bd917cc83a8ff032c610a6d5',1,'TinyDNSHuffmanStore::BitReader']]],
+  ['bitpos_1',['bitPos',['../struct_tiny_d_n_s_huffman_store_1_1_bit_reader.html#a58fbd997a0a00abffafe63c27ddf2536',1,'TinyDNSHuffmanStore::BitReader']]],
+  ['blockcount_2',['blockCount',['../struct_tiny_d_n_s_huffman_store_data.html#a359235f8ff745acf36826f7859097c4f',1,'TinyDNSHuffmanStoreData']]],
+  ['blocked_5f_3',['blocked_',['../class_tiny_d_n_s_server.html#a532ba8169d3d678a80b861fb4607550f',1,'TinyDNSServer']]],
+  ['blocklist_5f_4',['blocklist_',['../class_tiny_d_n_s_server.html#ae335faa024905335feeee35533c1839b',1,'TinyDNSServer']]],
+  ['blockpolicy_5f_5',['blockPolicy_',['../class_tiny_d_n_s_server.html#afdd74332a5773f1e6d6f69875d52ed18',1,'TinyDNSServer']]],
+  ['blocksize_6',['blockSize',['../struct_tiny_d_n_s_huffman_store_data.html#a9f86aef0c314d97ac673fdec5c7affbf',1,'TinyDNSHuffmanStoreData']]],
+  ['buffer_5f_7',['buffer_',['../class_tiny_d_n_s_client.html#ae6f980de1acbc7f6470313a3134185f7',1,'TinyDNSClient']]]
 ];

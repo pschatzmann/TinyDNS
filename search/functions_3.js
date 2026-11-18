@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['get_0',['get',['../class_tiny_d_n_s_l_r_u_cache.html#a9b61e874d2149a648607d1b1539da540',1,'TinyDNSLRUCache']]]
+  ['decodesymbol_0',['decodeSymbol',['../class_tiny_d_n_s_huffman_store.html#a833f0798c2b7a3c02f6ccd418d85251e',1,'TinyDNSHuffmanStore']]]
 ];

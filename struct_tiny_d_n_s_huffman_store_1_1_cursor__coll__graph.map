@@ -1,0 +1,11 @@
+<map id="TinyDNSHuffmanStore::Cursor" name="TinyDNSHuffmanStore::Cursor">
+<area shape="rect" id="Node000001" title=" " alt="" coords="50,225,217,269"/>
+<area shape="rect" id="Node000002" href="$struct_tiny_d_n_s_huffman_store_1_1_bit_reader.html" title=" " alt="" coords="90,115,176,143"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="135,156,136,225,131,223,131,160"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,5,72,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="57,43,97,89,121,114,116,115,93,93,57,48"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="96,5,170,33"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="134,46,136,115,131,114,132,51"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="198,5,247,33"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="217,45,209,71,195,93,164,116,161,112,191,89,204,69,214,50"/>
+</map>

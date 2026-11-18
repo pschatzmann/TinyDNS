@@ -75,7 +75,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#define-members">Macros</a>  </div>
+<a href="#define-members">Macros</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle"><div class="title">TinyDNSServer.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -85,6 +86,7 @@ $(function() {
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &lt;Client.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="_tiny_d_n_s_blocklist_8h_source.html">TinyDNSBlocklist.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_tiny_d_n_s_client_8h_source.html">TinyDNSClient.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_tiny_d_n_s_l_r_u_cache_8h_source.html">TinyDNSLRUCache.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -92,26 +94,44 @@ Include dependency graph for TinyDNSServer.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="_tiny_d_n_s_server_8h__incl.png" border="0" usemap="#asrc_2_tiny_d_n_s_server_8h" alt=""/></div>
 <map name="asrc_2_tiny_d_n_s_server_8h" id="asrc_2_tiny_d_n_s_server_8h">
-<area shape="rect" title="Caching DNS&#45;over&#45;TCP server for Arduino, backed by an LRU cache." alt="" coords="172,5,326,33"/>
-<area shape="rect" title=" " alt="" coords="221,157,304,184"/>
-<area shape="poly" title=" " alt="" coords="252,31,262,142,257,140,248,35"/>
-<area shape="rect" title=" " alt="" coords="5,157,77,184"/>
-<area shape="poly" title=" " alt="" coords="170,33,120,52,95,65,74,83,56,111,47,142,42,140,51,109,70,79,92,61,118,47,174,29"/>
-<area shape="rect" title=" " alt="" coords="328,157,399,184"/>
-<area shape="poly" title=" " alt="" coords="326,19,361,25,397,36,429,54,455,79,460,90,461,101,452,120,433,137,409,152,407,147,429,133,447,117,456,100,455,91,451,83,426,58,394,41,360,30,326,25"/>
-<area shape="rect" href="_tiny_d_n_s_client_8h.html" title="Header&#45;only DNS&#45;over&#45;TCP/TLS resolver for Arduino." alt="" coords="84,81,211,109"/>
-<area shape="poly" title=" " alt="" coords="233,32,179,74,176,70,229,35"/>
-<area shape="rect" href="_tiny_d_n_s_l_r_u_cache_8h.html" title="LRU cache for DNS records with a runtime capacity, optionally placed in PSRAM." alt="" coords="286,81,441,109"/>
-<area shape="poly" title=" " alt="" coords="270,31,333,72,328,73,269,36"/>
-<area shape="poly" title=" " alt="" coords="169,107,232,148,227,148,167,112"/>
-<area shape="poly" title=" " alt="" coords="131,109,74,150,71,146,126,110"/>
-<area shape="poly" title=" " alt="" coords="187,107,316,151,311,153,186,112"/>
-<area shape="rect" title=" " alt="" coords="101,157,197,184"/>
-<area shape="poly" title=" " alt="" coords="150,107,151,142,146,140,146,111"/>
-<area shape="poly" title=" " alt="" coords="348,108,294,150,291,145,343,110"/>
-<area shape="poly" title=" " alt="" coords="366,107,366,143,362,139,362,111"/>
-<area shape="rect" title=" " alt="" coords="422,157,492,184"/>
-<area shape="poly" title=" " alt="" coords="381,107,431,147,426,147,379,112"/>
+<area shape="rect" title="Caching DNS&#45;over&#45;TCP server for Arduino, backed by an LRU cache." alt="" coords="520,5,674,33"/>
+<area shape="rect" title=" " alt="" coords="149,232,232,260"/>
+<area shape="poly" title=" " alt="" coords="517,27,388,43,234,68,161,85,97,106,47,130,28,144,15,158,9,174,11,187,21,199,38,209,83,225,135,237,131,239,82,230,35,214,18,203,6,189,3,173,11,155,25,140,44,126,95,101,160,80,233,62,387,38,522,25"/>
+<area shape="rect" title=" " alt="" coords="932,157,1003,184"/>
+<area shape="poly" title=" " alt="" coords="674,28,761,47,807,61,852,79,903,110,946,147,941,145,900,114,849,83,806,66,760,52,674,33"/>
+<area shape="rect" title=" " alt="" coords="562,232,632,260"/>
+<area shape="poly" title=" " alt="" coords="602,31,613,81,619,133,616,185,608,219,604,216,610,184,613,133,608,81,599,36"/>
+<area shape="rect" href="_tiny_d_n_s_blocklist_8h.html" title="Suffix&#45;matching domain blocklist and allowlist for TinyDNSServer." alt="" coords="232,81,378,109"/>
+<area shape="poly" title=" " alt="" coords="542,35,373,79,371,74,547,33"/>
+<area shape="rect" href="_tiny_d_n_s_client_8h.html" title="Header&#45;only DNS&#45;over&#45;TCP/TLS resolver for Arduino." alt="" coords="711,81,838,109"/>
+<area shape="poly" title=" " alt="" coords="629,31,732,75,726,75,628,36"/>
+<area shape="rect" href="_tiny_d_n_s_l_r_u_cache_8h.html" title="LRU cache for DNS records with a runtime capacity, optionally placed in PSRAM." alt="" coords="443,81,599,109"/>
+<area shape="poly" title=" " alt="" coords="586,32,547,72,544,68,581,35"/>
+<area shape="poly" title=" " alt="" coords="230,103,173,112,112,123,60,138,41,148,28,158,21,172,23,184,31,195,46,205,87,222,136,235,131,237,86,227,43,210,28,199,18,186,16,171,24,155,38,143,58,133,110,118,172,106,234,101"/>
+<area shape="poly" title=" " alt="" coords="368,107,432,126,497,154,541,186,578,222,573,220,538,190,494,159,431,131,368,112"/>
+<area shape="rect" title=" " alt="" coords="17,232,87,260"/>
+<area shape="poly" title=" " alt="" coords="230,102,169,111,104,122,49,137,29,147,15,158,9,172,11,188,30,220,25,221,6,189,4,172,11,155,26,143,47,132,103,116,169,105,234,100"/>
+<area shape="rect" title=" " alt="" coords="378,232,448,260"/>
+<area shape="poly" title=" " alt="" coords="308,107,316,144,323,164,333,183,353,205,377,225,372,224,349,208,328,186,318,166,310,146,305,112"/>
+<area shape="rect" href="_tiny_d_n_s_huffman_store_8h.html" title="Read&#45;only, Huffman&#45;coded set of blocked domains, stored in PROGMEM." alt="" coords="38,157,217,184"/>
+<area shape="poly" title=" " alt="" coords="271,111,174,153,172,148,276,108"/>
+<area shape="rect" href="_tiny_d_n_s_memory_8h.html" title="Allocation helpers shared by the TinyDNS containers (LRU cache and RAM blocklist)...." alt="" coords="342,157,484,184"/>
+<area shape="poly" title=" " alt="" coords="325,107,384,148,379,148,324,112"/>
+<area shape="poly" title=" " alt="" coords="140,182,172,221,167,220,138,187"/>
+<area shape="poly" title=" " alt="" coords="212,182,548,235,546,239,212,188"/>
+<area shape="poly" title=" " alt="" coords="117,184,78,224,74,220,112,186"/>
+<area shape="poly" title=" " alt="" coords="376,185,245,230,244,224,371,185"/>
+<area shape="poly" title=" " alt="" coords="446,182,553,226,548,226,445,188"/>
+<area shape="poly" title=" " alt="" coords="415,183,415,218,411,215,411,187"/>
+<area shape="poly" title=" " alt="" coords="740,109,630,148,496,187,363,217,248,238,247,233,362,212,495,182,629,143,735,110"/>
+<area shape="poly" title=" " alt="" coords="809,107,922,151,917,151,809,112"/>
+<area shape="poly" title=" " alt="" coords="775,108,767,147,758,168,744,186,723,204,698,219,648,237,647,232,696,214,720,200,740,183,753,165,762,145,771,111"/>
+<area shape="rect" title=" " alt="" coords="812,157,908,184"/>
+<area shape="poly" title=" " alt="" coords="790,107,836,147,830,146,789,112"/>
+<area shape="poly" title=" " alt="" coords="465,110,402,132,332,159,272,192,221,226,219,221,269,187,329,154,400,127,470,108"/>
+<area shape="poly" title=" " alt="" coords="544,107,571,127,593,155,602,187,602,219,598,216,597,188,588,158,567,131,543,112"/>
+<area shape="poly" title=" " alt="" coords="522,107,516,146,509,166,498,186,477,208,453,227,451,222,474,205,494,183,504,164,511,144,518,111"/>
+<area shape="poly" title=" " alt="" coords="504,108,446,150,444,145,499,110"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -138,14 +158,39 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:af4608793a4f1ec1e6fb5922ac9df411e" id="r_af4608793a4f1ec1e6fb5922ac9df411e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tiny_d_n_s_server_8h.html#af4608793a4f1ec1e6fb5922ac9df411e">TINY_DNS_BLOCK_TTL</a>&#160;&#160;&#160;60</td></tr>
+<tr class="separator:af4608793a4f1ec1e6fb5922ac9df411e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa22545164e681cad3d92cfe3b66024ec" id="r_aa22545164e681cad3d92cfe3b66024ec"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tiny_d_n_s_server_8h.html#aa22545164e681cad3d92cfe3b66024ec">TINY_DNS_MAX_TTL</a>&#160;&#160;&#160;3600</td></tr>
 <tr class="separator:aa22545164e681cad3d92cfe3b66024ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:abfbf66eaa4f16d3615f1dc89205f13fa" id="r_abfbf66eaa4f16d3615f1dc89205f13fa"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tiny_d_n_s_server_8h.html#abfbf66eaa4f16d3615f1dc89205f13fa">TinyDNSBlockPolicy</a> : uint8_t { <a class="el" href="_tiny_d_n_s_server_8h.html#abfbf66eaa4f16d3615f1dc89205f13faa6bb5eb16f4747f8730ce88762afccd60">Sinkhole</a> = 0
+, <a class="el" href="_tiny_d_n_s_server_8h.html#abfbf66eaa4f16d3615f1dc89205f13faa286f3b1d4bea26ade640391b6ddb2442">NXDomain</a>
+, <a class="el" href="_tiny_d_n_s_server_8h.html#abfbf66eaa4f16d3615f1dc89205f13faaf48b206184b7442983452ea4c3e88a3a">Refused</a>
+ }</td></tr>
+<tr class="memdesc:abfbf66eaa4f16d3615f1dc89205f13fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">How <a class="el" href="class_tiny_d_n_s_server.html" title="Caching DNS server that answers queries from an LRU cache and forwards misses to an upstream TinyDNSC...">TinyDNSServer</a> answers queries for blocked names.  <a href="_tiny_d_n_s_server_8h.html#abfbf66eaa4f16d3615f1dc89205f13fa">More...</a><br /></td></tr>
+<tr class="separator:abfbf66eaa4f16d3615f1dc89205f13fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Caching DNS-over-TCP server for Arduino, backed by an LRU cache. </p>
 <p>Accepts DNS queries on a stream Client (e.g. a WiFiClient obtained from a WiFiServer listening on port 53), answers A/AAAA questions from an LRU cache and forwards cache misses to an upstream <a class="el" href="class_tiny_d_n_s_client.html" title="Header-only DNS resolver that queries over a generic Arduino Client rather than UDP.">TinyDNSClient</a>.</p>
 <dl class="section author"><dt>Author</dt><dd>Phil Schatzmann </dd></dl>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="af4608793a4f1ec1e6fb5922ac9df411e" name="af4608793a4f1ec1e6fb5922ac9df411e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4608793a4f1ec1e6fb5922ac9df411e">&#9670;&#160;</a></span>TINY_DNS_BLOCK_TTL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TINY_DNS_BLOCK_TTL&#160;&#160;&#160;60</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="aa22545164e681cad3d92cfe3b66024ec" name="aa22545164e681cad3d92cfe3b66024ec"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa22545164e681cad3d92cfe3b66024ec">&#9670;&#160;</a></span>TINY_DNS_MAX_TTL</h2>
 
@@ -157,6 +202,39 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="abfbf66eaa4f16d3615f1dc89205f13fa" name="abfbf66eaa4f16d3615f1dc89205f13fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfbf66eaa4f16d3615f1dc89205f13fa">&#9670;&#160;</a></span>TinyDNSBlockPolicy</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="_tiny_d_n_s_server_8h.html#abfbf66eaa4f16d3615f1dc89205f13fa">TinyDNSBlockPolicy</a> : uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>How <a class="el" href="class_tiny_d_n_s_server.html" title="Caching DNS server that answers queries from an LRU cache and forwards misses to an upstream TinyDNSC...">TinyDNSServer</a> answers queries for blocked names. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="abfbf66eaa4f16d3615f1dc89205f13faa6bb5eb16f4747f8730ce88762afccd60" name="abfbf66eaa4f16d3615f1dc89205f13faa6bb5eb16f4747f8730ce88762afccd60"></a>Sinkhole&#160;</td><td class="fielddoc"><p>A queries get the sinkhole address (see setSinkholeAddress()); other types get NOERROR with no answer (NODATA). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="abfbf66eaa4f16d3615f1dc89205f13faa286f3b1d4bea26ade640391b6ddb2442" name="abfbf66eaa4f16d3615f1dc89205f13faa286f3b1d4bea26ade640391b6ddb2442"></a>NXDomain&#160;</td><td class="fielddoc"><p>NXDOMAIN for every query type. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="abfbf66eaa4f16d3615f1dc89205f13faaf48b206184b7442983452ea4c3e88a3a" name="abfbf66eaa4f16d3615f1dc89205f13faaf48b206184b7442983452ea4c3e88a3a"></a>Refused&#160;</td><td class="fielddoc"><p>REFUSED for every query type. </p>
+</td></tr>
+</table>
 
 </div>
 </div>

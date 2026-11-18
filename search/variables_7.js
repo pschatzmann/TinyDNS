@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['maxttl_5f_0',['maxTtl_',['../class_tiny_d_n_s_server.html#a2f324e78f1085126e420f057a3e51762',1,'TinyDNSServer']]],
-  ['misses_5f_1',['misses_',['../class_tiny_d_n_s_server.html#a311cec186a0be294abdbcde51a119b7f',1,'TinyDNSServer']]]
+  ['index_0',['index',['../struct_tiny_d_n_s_huffman_store_data.html#ad8ead1a368144411cf64e4993f140730',1,'TinyDNSHuffmanStoreData']]],
+  ['ip_1',['ip',['../struct_tiny_d_n_s_host.html#a863c214d56d28a55467c000641e1be91',1,'TinyDNSHost']]]
 ];

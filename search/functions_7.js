@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['operator_3d_0',['operator=',['../class_tiny_d_n_s_l_r_u_cache.html#a1c4699587eef9adbc79652a9958238b5',1,'TinyDNSLRUCache']]]
+  ['handle_0',['handle',['../class_tiny_d_n_s_server.html#ae61777717caac7ba8be4201baef953da',1,'TinyDNSServer']]],
+  ['hashstring_1',['hashString',['../class_tiny_d_n_s_blocklist.html#a33c1b61a98f43d347782b6c8ed8cbcb7',1,'TinyDNSBlocklist']]]
 ];

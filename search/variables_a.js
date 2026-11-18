@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['qtype_0',['qtype',['../struct_tiny_d_n_s_l_r_u_cache_1_1_entry.html#a92ac313e0c65dcd831a91b495aa7b282',1,'TinyDNSLRUCache::Entry']]],
-  ['query_5f_1',['query_',['../class_tiny_d_n_s_server.html#ad9e203af901c6d2e70fe80a453dd8aef',1,'TinyDNSServer']]]
+  ['maxttl_5f_0',['maxTtl_',['../class_tiny_d_n_s_server.html#a2f324e78f1085126e420f057a3e51762',1,'TinyDNSServer']]],
+  ['misses_5f_1',['misses_',['../class_tiny_d_n_s_server.html#a311cec186a0be294abdbcde51a119b7f',1,'TinyDNSServer']]]
 ];

@@ -1,0 +1,7 @@
+<map id="TinyDNSBlocklist::Slot" name="TinyDNSBlocklist::Slot">
+<area shape="rect" id="Node000001" title=" " alt="" coords="6,115,172,143"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,80,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="55,45,75,90,86,115,81,114,70,92,53,50"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="104,5,170,33"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="129,46,110,92,98,116,94,113,105,90,124,49"/>
+</map>

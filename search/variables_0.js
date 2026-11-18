@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['buffer_5f_0',['buffer_',['../class_tiny_d_n_s_client.html#ae6f980de1acbc7f6470313a3134185f7',1,'TinyDNSClient']]]
+  ['active_5f_0',['active_',['../class_tiny_d_n_s_blocklist.html#af6bdd5a592e8d70482d99935befc7603',1,'TinyDNSBlocklist']]]
 ];

@@ -1,0 +1,35 @@
+<map id="TinyDNSBlocklist" name="TinyDNSBlocklist">
+<area shape="rect" id="Node000001" title="Suffix&#45;matching set of blocked and allowed domain names." alt="" coords="867,254,1001,282"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="568,17,707,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="722,33,786,48,817,61,845,80,865,99,882,122,908,171,924,218,933,255,928,253,919,220,903,173,878,125,861,103,842,84,815,66,784,53,723,38"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="565,80,710,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="720,110,784,132,845,165,870,186,893,210,926,254,921,253,889,213,867,190,842,169,782,137,721,115"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="561,132,714,159"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="691,163,722,175,902,253,897,254,720,180,691,168"/>
+<area shape="rect" id="Node000005" href="$class_tiny_d_n_s_huffman_store.html" title="Exact&#45;match lookup over a Huffman&#45;coded domain store." alt="" coords="554,381,721,409"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="685,372,902,282,897,284,687,377"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="290,254,350,282"/>
+<area shape="poly" id="edge18_Node000001_Node000006" title=" " alt="" coords="364,266,868,266,865,270,365,271"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="364,277,420,292,444,301,488,316,531,333,616,380,611,381,529,337,486,321,442,306,418,297,365,282"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="9,428,76,455"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="90,442,221,448,320,452,363,452,419,448,474,438,529,423,591,409,586,410,531,428,476,443,419,453,364,458,320,458,221,453,92,447"/>
+<area shape="rect" id="Node000008" href="$struct_tiny_d_n_s_huffman_store_data.html" title="Description of one Huffman&#45;coded store. Usually a generated static const object, so all pointers refe..." alt="" coords="221,394,419,422"/>
+<area shape="poly" id="edge10_Node000008_Node000007" title=" " alt="" coords="90,433,222,418,219,422,92,438"/>
+<area shape="rect" id="Node000011" href="$struct_tiny_d_n_s_huffman_store_1_1_table.html" title=" " alt="" coords="292,306,348,334"/>
+<area shape="poly" id="edge13_Node000011_Node000007" title=" " alt="" coords="43,412,48,380,58,344,75,310,102,282,126,271,148,270,197,282,222,291,294,313,289,315,220,296,196,287,147,275,127,276,105,286,80,313,63,346,53,382,48,413"/>
+<area shape="rect" id="Node000013" href="$struct_tiny_d_n_s_blocklist_1_1_slot.html" title=" " alt="" coords="297,562,343,590"/>
+<area shape="poly" id="edge17_Node000013_Node000007" title=" " alt="" coords="65,464,105,496,129,507,150,512,172,516,198,527,210,538,222,547,261,562,299,573,293,573,259,567,219,552,207,542,195,532,171,522,149,517,128,512,102,501,66,470"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="434,417,530,415,581,409,576,410,530,420,435,422"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="5,617,80,645"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="94,625,155,617,179,610,195,601,208,582,213,563,207,523,202,482,206,460,219,439,246,421,242,424,223,442,211,462,207,482,213,523,218,563,213,584,198,605,181,615,156,622,95,631"/>
+<area shape="poly" id="edge16_Node000013_Node000009" title=" " alt="" coords="78,650,104,660,151,668,171,666,196,660,228,646,258,627,302,591,307,590,261,631,231,650,198,665,172,672,150,673,103,665,77,655"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="5,241,80,269"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="67,277,105,304,129,315,150,319,171,322,198,331,245,358,299,393,294,395,242,362,196,336,170,328,149,324,128,320,102,309,68,282"/>
+<area shape="poly" id="edge12_Node000011_Node000010" title=" " alt="" coords="86,233,113,225,142,221,171,223,198,234,210,248,212,263,214,278,223,292,238,302,256,310,294,318,289,320,255,315,236,307,219,295,209,280,207,264,205,250,195,238,170,228,142,226,115,230,90,237"/>
+<area shape="poly" id="edge11_Node000005_Node000011" title=" " alt="" coords="361,337,444,366,499,378,556,388,551,389,498,383,442,372,362,342"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="295,510,344,538"/>
+<area shape="poly" id="edge14_Node000005_Node000012" title=" " alt="" coords="360,524,441,520,486,512,529,496,559,477,586,453,624,411,629,408,590,457,563,481,531,501,487,517,441,526,361,529"/>
+<area shape="poly" id="edge15_Node000001_Node000013" title=" " alt="" coords="358,567,437,551,529,524,624,489,695,455,762,412,842,350,916,284,921,281,845,354,765,417,698,460,626,494,531,529,439,556,359,573"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="608,604,668,631"/>
+<area shape="poly" id="edge19_Node000001_Node000014" title=" " alt="" coords="683,622,721,625,764,622,805,611,842,590,858,568,874,533,900,442,918,348,929,284,933,280,923,349,905,443,879,535,863,570,845,594,807,616,764,627,721,630,683,628"/>
+</map>
